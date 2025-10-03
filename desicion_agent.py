@@ -8,7 +8,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 load_dotenv()
 
-OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5")  # adjust if needed
+OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5")
 TIMEOUT = int(os.getenv("TIMEOUT", "30"))
 UA = {"User-Agent": "Mozilla/5.0", "Accept-Language": "en-US,en;q=0.9"}
 
