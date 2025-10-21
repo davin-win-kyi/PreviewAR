@@ -128,7 +128,9 @@ def main():
     test_json = json.load(open("test.json", "r", encoding="utf-8"))
     dimensions = get_dimensions_via_gpt(test_json)
     print("Dimensions: ", dimensions)
-    scale_glb_in_blender("C:\\Users\\davin\\Hunyuan3D-2-WinPortable\\hy3d_output\\model.glb", dimensions["length_m"], dimensions["width_m"], dimensions["height_m"], "model_scale.glb")
+
+    # this needs to be done in blender or in Unity
+    # scale_glb_in_blender("C:\\Users\\davin\\Hunyuan3D-2-WinPortable\\hy3d_output\\model.glb", dimensions["length_m"], dimensions["width_m"], dimensions["height_m"], "model_scale.glb")
     
 
 
