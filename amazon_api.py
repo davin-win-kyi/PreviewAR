@@ -2,26 +2,37 @@
 """
 rf_raw_json_vars.py
 
-Pass ASIN, Amazon domain, and Rainforest API key as variables.
-Makes a call to Rainforest API (type=product) and returns the raw JSON.
+Fetch a Rainforest API product JSON using ONLY the ASIN parameter.
 
-- Do NOT hardcode real keys in code committed to repos.
-- Prefer reading api_key from an env var in real projects.
+Env vars:
+- RAINFOREST_API_KEY  (required)
+- AMAZON_DOMAIN       (optional, default: "amazon.com")
 """
 
 import json
 import os
 import requests
-
 from dotenv import load_dotenv
 
 load_dotenv()
 
-def fetch_rainforest_product(asin: str, amazon_domain: str, api_key: str, *, timeout: int = 25) -> dict:
+def fetch_rainforest_product(asin: str, *, timeout: int = 25) -> dict:
     """
-    Returns the raw JSON dict from Rainforest for the given ASIN and domain.
-    Raises a requests.HTTPError on non-2xx or ValueError on invalid JSON.
+    Returns the raw JSON dict from Rainforest for the given ASIN.
+    Uses env vars:
+      - RAINFOREST_API_KEY (required)
+      - AMAZON_DOMAIN (optional, default 'amazon.com')
+    Raises:
+      - RuntimeError if API key missing
+      - requests.HTTPError on non-2xx responses
+      - ValueError on invalid JSON
     """
+    api_key = os.getenv("RAINFOREST_API_KEY")
+    if not api_key:
+        raise RuntimeError("Missing Rainforest API key. Set RAINFOREST_API_KEY.")
+
+    amazon_domain = os.getenv("AMAZON_DOMAIN", "amazon.com").strip() or "amazon.com"
+
     url = "https://api.rainforestapi.com/request"
     params = {
         "api_key": api_key,
@@ -39,22 +50,17 @@ def save_json(data: dict, path: str) -> None:
 
 # ---------------------------
 # Put your variables here:
-ASIN = "B0FB2PSYPK"          # e.g., "B0FB2PSYPK"
-AMAZON_DOMAIN = "amazon.com" # e.g., "amazon.co.uk", "amazon.de", etc.
-RAINFOREST_API_KEY = os.getenv("RAINFOREST_API_KEY")  # replace or set env var
-OUTPUT_PATH = None           # e.g., "product.json" or None to just print
+ASIN = "B0FB2PSYPK"   # e.g., "B0FB2PSYPK"
+OUTPUT_PATH = None    # e.g., "product.json" or None to just print
 # ---------------------------
 
 if __name__ == "__main__":
     try:
-        if not RAINFOREST_API_KEY or RAINFOREST_API_KEY == "YOUR_RAINFOREST_KEY":
-            raise RuntimeError("Missing Rainforest API key. Set RAINFOREST_API_KEY or replace RAINFOREST_API_KEY variable.")
-        data = fetch_rainforest_product(ASIN, AMAZON_DOMAIN, RAINFOREST_API_KEY)
+        data = fetch_rainforest_product(ASIN)
         if OUTPUT_PATH:
             save_json(data, OUTPUT_PATH)
             print(json.dumps({"ok": True, "saved_to": OUTPUT_PATH}))
         else:
-            # Print the raw Rainforest JSON (single line)
             print(json.dumps(data, ensure_ascii=False))
     except requests.HTTPError as e:
         print(json.dumps({"error": f"HTTP error: {e}"}))
