@@ -4,8 +4,6 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 import os
 from dotenv import load_dotenv
-import re
-
 
 load_dotenv()
 
