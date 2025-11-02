@@ -40,11 +40,11 @@ def newest_glb_from_cache(cache_dir: str, started_after: float):
 def main():
 
     # handling the amazon case right now
-    # out_path = process_url("https://www.amazon.com/MAXYOYO-Boneless-Backrest-Upholstered-Armrests/dp/B0FLDP6QW9/ref=sr_1_26?crid=368RDRS52OHRH&dib=eyJ2IjoiMSJ9.UxtiqFhNvt8FIthZUZvN2Mo8HtpaxZuo7k1psGyfivTAhtkOFeqDYiGIPIAiZ93fZ6uX58lMtgb8aw4ESt4G0uOo0rabEETrSqqk0b_VlwWT_WZ_ACU3yqNeeNugINEEGLhgPInP1DyhZVCQuNvNjFl64AzoJndTjRlDgA7QH9uRGUmPjpUe3BxAKFWBnL__CATDEfoLxcDtmUx2Jf7ud3PH3quw1c2LNNE84eaGkBv1dLM6HhZpxpbu39hzSeRHBVjQ_RBKsgMDqn9fIRM2yc_FvIIp-gASDXlk2dM3b_I.IiO8pW-3VmMUsh2dFdwAV3eARcZO66WEYcrSXaEb5KA&dib_tag=se&keywords=couch&qid=1761027647&s=home-garden&sprefix=couch%2Cgarden%2C214&sr=1-26", "test.json")
+    out_path = process_url("https://www.amazon.com/Sectional-Minimalist-Upholstered-Couch%EF%BC%8CNo-Assembly/dp/B0DMSPJ97J/ref=sxin_16_pa_sp_search_thematic_sspa?content-id=amzn1.sym.a1bc2dac-8d07-44d1-9477-59bc11451909%3Aamzn1.sym.a1bc2dac-8d07-44d1-9477-59bc11451909&crid=1X7V4GO2K8PE9&cv_ct_cx=couch&keywords=couch&pd_rd_i=B0DMSPJ97J&pd_rd_r=00c418e9-74a0-40d2-882c-295d127e6cef&pd_rd_w=e9VtT&pd_rd_wg=lfOx6&pf_rd_p=a1bc2dac-8d07-44d1-9477-59bc11451909&pf_rd_r=6VAC3N6XWY0GH5P85MSB&qid=1761351451&s=home-garden&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=couch%2Cgarden%2C391&sr=1-2-9428117c-b940-4daa-97e9-ad363ada7940-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9zZWFyY2hfdGhlbWF0aWM&th=1", "test.json")
 
     # now process the json with output information
-    # dis(out_path)
-    dis("test.json")
+    dis(out_path)
+    # dis("test.json")
 
 
 
@@ -116,7 +116,7 @@ def main():
             )
 
         # saving the glb file
-        out_path = pathlib.Path(args.out)
+        out_path = pathlib.Path("model.glb")
         out_path.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(found_glb, out_path)
 
@@ -128,7 +128,7 @@ def main():
     test_json = json.load(open("test.json", "r", encoding="utf-8"))
     dimensions = get_dimensions_via_gpt(test_json)
     print("Dimensions: ", dimensions)
-    scale_glb_in_blender("C:\\Users\\davin\\Hunyuan3D-2-WinPortable\\hy3d_output\\model.glb", dimensions["length_m"], dimensions["width_m"], dimensions["height_m"], "model_scale.glb")
+    # scale_glb_in_blender("C:\\Users\\davin\\Hunyuan3D-2-WinPortable\\hy3d_output\\model.glb", dimensions["length_m"], dimensions["width_m"], dimensions["height_m"], "model_scale.glb")
     
 
 

@@ -1,79 +1,75 @@
 {
   "request_info": {
     "success": true,
-    "credits_used": 9,
-    "credits_remaining": 91,
+    "credits_used": 11,
+    "credits_remaining": 89,
     "credits_used_this_request": 1
   },
   "request_parameters": {
     "type": "product",
     "amazon_domain": "amazon.com",
-    "asin": "B0FLDP6QW9"
+    "asin": "B0DMSPJ97J"
   },
   "request_metadata": {
-    "created_at": "2025-10-21T06:25:39.099Z",
-    "processed_at": "2025-10-21T06:25:44.297Z",
-    "total_time_taken": 5.2,
-    "amazon_url": "https://www.amazon.com/dp/B0FLDP6QW9?th=1&psc=1"
+    "created_at": "2025-10-25T00:25:25.912Z",
+    "processed_at": "2025-10-25T00:25:31.373Z",
+    "total_time_taken": 5.46,
+    "amazon_url": "https://www.amazon.com/dp/B0DMSPJ97J?th=1&psc=1"
   },
   "product": {
-    "title": "MAXYOYO 3 Seater Couch for Living Room, Boneless Couch with Tufted Cushion & Backrest, Upholstered Floor Sofa with Armrests, Sofa in A Box, No Assembly Required, Dark Grey 3 Seater Dark Grey",
+    "title": "107.5\" Cloud Modular Sectional Sofa with 1 Ottoman,Modern Minimalist Upholstered Couches, Comfort U Shaped Sofa for Living Room,Deep Seat Corner Couch，No Assembly Required (Black,Left Facing Chaise) 2 seater+Left Facing Chaise+ottoman Black",
     "search_alias": {
       "title": "Home & Kitchen",
       "value": "garden"
     },
-    "title_excluding_variant_name": "MAXYOYO 3 Seater Couch for Living Room, Boneless Couch with Tufted Cushion & Backrest, Upholstered Floor Sofa with Armrests, Sofa in A Box, No Assembly Required, Dark Grey",
-    "keywords": "MAXYOYO,3,Seater,Couch,for,Living,Room,Boneless,Couch,with,Tufted,Cushion,&,Backrest,Upholstered,Floor,Sofa,with,Armrests,Sofa,in,A,Box,No,Assembly,Required,Dark,Grey,3,Seater,Dark,Grey",
+    "title_excluding_variant_name": "107.5\" Cloud Modular Sectional Sofa with 1 Ottoman,Modern Minimalist Upholstered Couches, Comfort U Shaped Sofa for Living Room,Deep Seat Corner Couch，No Assembly Required (Black,Left Facing Chaise)",
+    "keywords": "107.5\",Cloud,Modular,Sectional,Sofa,with,1,Ottoman,Modern,Minimalist,Upholstered,Couches,Comfort,U,Shaped,Sofa,for,Living,Room,Deep,Seat,Corner,Couch，No,Assembly,Required,(Black,Left,Facing,Chaise),2,seater+Left,Facing,Chaise+ottoman,Black",
     "keywords_list": [
-      "MAXYOYO",
-      "Seater",
-      "Couch",
+      "107.5\"",
+      "Cloud",
+      "Modular",
+      "Sectional",
+      "Sofa",
+      "with",
+      "Ottoman",
+      "Modern",
+      "Minimalist",
+      "Upholstered",
+      "Couches",
+      "Comfort",
+      "Shaped",
+      "Sofa",
       "Living",
       "Room",
-      "Boneless",
-      "Couch",
-      "with",
-      "Tufted",
-      "Cushion",
-      "Backrest",
-      "Upholstered",
-      "Floor",
-      "Sofa",
-      "with",
-      "Armrests",
-      "Sofa",
+      "Deep",
+      "Seat",
+      "Corner",
+      "Couch，No",
       "Assembly",
       "Required",
-      "Dark",
-      "Grey",
-      "Seater",
-      "Dark",
-      "Grey"
+      "(Black",
+      "Left",
+      "Facing",
+      "Chaise)",
+      "seater+Left",
+      "Facing",
+      "Chaise+ottoman",
+      "Black"
     ],
     "is_collection": false,
-    "asin": "B0FLDP6QW9",
-    "parent_asin": "B0F2HRP4PP",
-    "link": "https://www.amazon.com/MAXYOYO-Boneless-Backrest-Upholstered-Armrests/dp/B0FLDP6QW9",
-    "brand": "MAXYOYO",
+    "asin": "B0DMSPJ97J",
+    "parent_asin": "B0DMSLLV61",
+    "link": "https://www.amazon.com/Sectional-Minimalist-Upholstered-Couch%EF%BC%8CNo-Assembly/dp/B0DMSPJ97J",
+    "brand": "Settab",
     "protection_plans": [
       {
-        "asin": "B0CG7284XZ",
-        "title": "2-Year Protection Plan",
-        "price": {
-          "symbol": "$",
-          "value": 52.99,
-          "currency": "USD",
-          "raw": "$52.99"
-        }
-      },
-      {
-        "asin": "B0CG6TTC79",
+        "asin": "B0CG6R59L8",
         "title": "3-Year Protection Plan",
         "price": {
           "symbol": "$",
-          "value": 67.99,
+          "value": 129.99,
           "currency": "USD",
-          "raw": "$67.99"
+          "raw": "$129.99"
         }
       },
       {
@@ -91,166 +87,390 @@
     "variants": [
       {
         "is_current_product": false,
-        "title": "Loveseat Beige",
+        "title": "3 seater+Left Facing Chaise+ottoman Black",
         "dimensions": [
           {
             "name": "Size",
-            "value": "Loveseat"
-          },
-          {
-            "name": "Color",
-            "value": "Beige"
-          }
-        ],
-        "asin": "B0F2HT2GN6",
-        "link": "https://www.amazon.com/dp/B0F2HT2GN6?th=1&psc=1"
-      },
-      {
-        "is_current_product": false,
-        "title": "3 Seater Black",
-        "dimensions": [
-          {
-            "name": "Size",
-            "value": "3 Seater"
+            "value": "3 seater+Left Facing Chaise+ottoman"
           },
           {
             "name": "Color",
             "value": "Black"
           }
         ],
-        "asin": "B0F9DBZ1VM",
-        "link": "https://www.amazon.com/dp/B0F9DBZ1VM?th=1&psc=1"
+        "asin": "B0DMST63TM",
+        "link": "https://www.amazon.com/dp/B0DMST63TM?th=1&psc=1"
       },
       {
         "is_current_product": false,
-        "title": "Loveseat Dark Green",
+        "title": "2 seater+Left Facing Chaise Camel",
         "dimensions": [
           {
             "name": "Size",
-            "value": "Loveseat"
+            "value": "2 seater+Left Facing Chaise"
           },
           {
             "name": "Color",
-            "value": "Dark Green"
+            "value": "Camel"
           }
         ],
-        "asin": "B0FLC5WVBX",
-        "link": "https://www.amazon.com/dp/B0FLC5WVBX?th=1&psc=1"
+        "asin": "B0DMSQKPG9",
+        "link": "https://www.amazon.com/dp/B0DMSQKPG9?th=1&psc=1"
       },
       {
         "is_current_product": false,
-        "title": "3 Seater Navy",
+        "title": "2 seater+Left Facing Chaise Grey",
         "dimensions": [
           {
             "name": "Size",
-            "value": "3 Seater"
+            "value": "2 seater+Left Facing Chaise"
           },
           {
             "name": "Color",
-            "value": "Navy"
+            "value": "Grey"
           }
         ],
-        "asin": "B0FJM77MVS",
-        "link": "https://www.amazon.com/dp/B0FJM77MVS?th=1&psc=1"
+        "asin": "B0DMSPW9FW",
+        "link": "https://www.amazon.com/dp/B0DMSPW9FW?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "2 seater+Left Facing Chaise+ottoman Camel",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "2 seater+Left Facing Chaise+ottoman"
+          },
+          {
+            "name": "Color",
+            "value": "Camel"
+          }
+        ],
+        "asin": "B0DMSPC99M",
+        "link": "https://www.amazon.com/dp/B0DMSPC99M?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "3 seater+Left Facing Chaise+ottoman Camel",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "3 seater+Left Facing Chaise+ottoman"
+          },
+          {
+            "name": "Color",
+            "value": "Camel"
+          }
+        ],
+        "asin": "B0DMSRY9DN",
+        "link": "https://www.amazon.com/dp/B0DMSRY9DN?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "3 seater+Left Facing Chaise Grey",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "3 seater+Left Facing Chaise"
+          },
+          {
+            "name": "Color",
+            "value": "Grey"
+          }
+        ],
+        "asin": "B0DMSMGMPK",
+        "link": "https://www.amazon.com/dp/B0DMSMGMPK?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "3 seater+Right Facing Chaise+ottoman Camel",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "3 seater+Right Facing Chaise+ottoman"
+          },
+          {
+            "name": "Color",
+            "value": "Camel"
+          }
+        ],
+        "asin": "B0DMSNPZCG",
+        "link": "https://www.amazon.com/dp/B0DMSNPZCG?th=1&psc=1"
       },
       {
         "is_current_product": true,
-        "title": "3 Seater Dark Grey",
+        "title": "2 seater+Left Facing Chaise+ottoman Black",
         "dimensions": [
           {
             "name": "Size",
-            "value": "3 Seater"
-          },
-          {
-            "name": "Color",
-            "value": "Dark Grey"
-          }
-        ],
-        "asin": "B0FLDP6QW9",
-        "link": "https://www.amazon.com/dp/B0FLDP6QW9?th=1&psc=1"
-      },
-      {
-        "is_current_product": false,
-        "title": "3 Seater Dark Green",
-        "dimensions": [
-          {
-            "name": "Size",
-            "value": "3 Seater"
-          },
-          {
-            "name": "Color",
-            "value": "Dark Green"
-          }
-        ],
-        "asin": "B0FVS5BGLD",
-        "link": "https://www.amazon.com/dp/B0FVS5BGLD?th=1&psc=1"
-      },
-      {
-        "is_current_product": false,
-        "title": "Loveseat Black",
-        "dimensions": [
-          {
-            "name": "Size",
-            "value": "Loveseat"
+            "value": "2 seater+Left Facing Chaise+ottoman"
           },
           {
             "name": "Color",
             "value": "Black"
           }
         ],
-        "asin": "B0F2HS7L2W",
-        "link": "https://www.amazon.com/dp/B0F2HS7L2W?th=1&psc=1"
+        "asin": "B0DMSPJ97J",
+        "link": "https://www.amazon.com/dp/B0DMSPJ97J?th=1&psc=1"
       },
       {
         "is_current_product": false,
-        "title": "3 Seater Beige",
+        "title": "2 seater+Left Facing Chaise Black",
         "dimensions": [
           {
             "name": "Size",
-            "value": "3 Seater"
+            "value": "2 seater+Left Facing Chaise"
           },
           {
             "name": "Color",
-            "value": "Beige"
+            "value": "Black"
           }
         ],
-        "asin": "B0FWQX322T",
-        "link": "https://www.amazon.com/dp/B0FWQX322T?th=1&psc=1"
+        "asin": "B0DMSNCX14",
+        "link": "https://www.amazon.com/dp/B0DMSNCX14?th=1&psc=1"
       },
       {
         "is_current_product": false,
-        "title": "Loveseat Navy",
+        "title": "2 seater+Right Facing Chaise Grey",
         "dimensions": [
           {
             "name": "Size",
-            "value": "Loveseat"
+            "value": "2 seater+Right Facing Chaise"
           },
           {
             "name": "Color",
-            "value": "Navy"
+            "value": "Grey"
           }
         ],
-        "asin": "B0F2HTG13J",
-        "link": "https://www.amazon.com/dp/B0F2HTG13J?th=1&psc=1"
+        "asin": "B0DMSR8HKC",
+        "link": "https://www.amazon.com/dp/B0DMSR8HKC?th=1&psc=1"
       },
       {
         "is_current_product": false,
-        "title": "Loveseat Dark Grey",
+        "title": "2 seater+Right Facing Chaise Black",
         "dimensions": [
           {
             "name": "Size",
-            "value": "Loveseat"
+            "value": "2 seater+Right Facing Chaise"
           },
           {
             "name": "Color",
-            "value": "Dark Grey"
+            "value": "Black"
           }
         ],
-        "asin": "B0F2HRZ9P2",
-        "link": "https://www.amazon.com/dp/B0F2HRZ9P2?th=1&psc=1"
+        "asin": "B0DMSKPPKL",
+        "link": "https://www.amazon.com/dp/B0DMSKPPKL?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "3 seater+Left Facing Chaise Black",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "3 seater+Left Facing Chaise"
+          },
+          {
+            "name": "Color",
+            "value": "Black"
+          }
+        ],
+        "asin": "B0DMSMGNZZ",
+        "link": "https://www.amazon.com/dp/B0DMSMGNZZ?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "2 seater+Left Facing Chaise+ottoman Grey",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "2 seater+Left Facing Chaise+ottoman"
+          },
+          {
+            "name": "Color",
+            "value": "Grey"
+          }
+        ],
+        "asin": "B0DMSXBF36",
+        "link": "https://www.amazon.com/dp/B0DMSXBF36?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "3 seater+Left Facing Chaise Camel",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "3 seater+Left Facing Chaise"
+          },
+          {
+            "name": "Color",
+            "value": "Camel"
+          }
+        ],
+        "asin": "B0DMSQ1F7Z",
+        "link": "https://www.amazon.com/dp/B0DMSQ1F7Z?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "3 seater+Right Facing Chaise Grey",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "3 seater+Right Facing Chaise"
+          },
+          {
+            "name": "Color",
+            "value": "Grey"
+          }
+        ],
+        "asin": "B0DMSPHHVR",
+        "link": "https://www.amazon.com/dp/B0DMSPHHVR?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "2 seater+Right Facing Chaise+ottoman Grey",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "2 seater+Right Facing Chaise+ottoman"
+          },
+          {
+            "name": "Color",
+            "value": "Grey"
+          }
+        ],
+        "asin": "B0DMSSN237",
+        "link": "https://www.amazon.com/dp/B0DMSSN237?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "2 seater+Right Facing Chaise+ottoman Black",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "2 seater+Right Facing Chaise+ottoman"
+          },
+          {
+            "name": "Color",
+            "value": "Black"
+          }
+        ],
+        "asin": "B0DMSPQV1N",
+        "link": "https://www.amazon.com/dp/B0DMSPQV1N?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "3 seater+Left Facing Chaise+ottoman Grey",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "3 seater+Left Facing Chaise+ottoman"
+          },
+          {
+            "name": "Color",
+            "value": "Grey"
+          }
+        ],
+        "asin": "B0DMSPJV5L",
+        "link": "https://www.amazon.com/dp/B0DMSPJV5L?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "2 seater+Right Facing Chaise Camel",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "2 seater+Right Facing Chaise"
+          },
+          {
+            "name": "Color",
+            "value": "Camel"
+          }
+        ],
+        "asin": "B0DMSMGWG2",
+        "link": "https://www.amazon.com/dp/B0DMSMGWG2?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "2 seater+Right Facing Chaise+ottoman Camel",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "2 seater+Right Facing Chaise+ottoman"
+          },
+          {
+            "name": "Color",
+            "value": "Camel"
+          }
+        ],
+        "asin": "B0DMSP91DG",
+        "link": "https://www.amazon.com/dp/B0DMSP91DG?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "3 seater+Right Facing Chaise+ottoman Black",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "3 seater+Right Facing Chaise+ottoman"
+          },
+          {
+            "name": "Color",
+            "value": "Black"
+          }
+        ],
+        "asin": "B0DMSNHCHV",
+        "link": "https://www.amazon.com/dp/B0DMSNHCHV?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "3 seater+Right Facing Chaise Camel",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "3 seater+Right Facing Chaise"
+          },
+          {
+            "name": "Color",
+            "value": "Camel"
+          }
+        ],
+        "asin": "B0DMSNMY11",
+        "link": "https://www.amazon.com/dp/B0DMSNMY11?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "3 seater+Right Facing Chaise+ottoman Grey",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "3 seater+Right Facing Chaise+ottoman"
+          },
+          {
+            "name": "Color",
+            "value": "Grey"
+          }
+        ],
+        "asin": "B0DMSPJDDY",
+        "link": "https://www.amazon.com/dp/B0DMSPJDDY?th=1&psc=1"
+      },
+      {
+        "is_current_product": false,
+        "title": "3 seater+Right Facing Chaise Black",
+        "dimensions": [
+          {
+            "name": "Size",
+            "value": "3 seater+Right Facing Chaise"
+          },
+          {
+            "name": "Color",
+            "value": "Black"
+          }
+        ],
+        "asin": "B0DMSK8JF1",
+        "link": "https://www.amazon.com/dp/B0DMSK8JF1?th=1&psc=1"
       }
     ],
-    "variant_asins_flat": "B0F2HT2GN6,B0F9DBZ1VM,B0FLC5WVBX,B0FJM77MVS,B0FLDP6QW9,B0FVS5BGLD,B0F2HS7L2W,B0FWQX322T,B0F2HTG13J,B0F2HRZ9P2",
+    "variant_asins_flat": "B0DMST63TM,B0DMSQKPG9,B0DMSPW9FW,B0DMSPC99M,B0DMSRY9DN,B0DMSMGMPK,B0DMSNPZCG,B0DMSPJ97J,B0DMSNCX14,B0DMSR8HKC,B0DMSKPPKL,B0DMSMGNZZ,B0DMSXBF36,B0DMSQ1F7Z,B0DMSPHHVR,B0DMSSN237,B0DMSPQV1N,B0DMSPJV5L,B0DMSMGWG2,B0DMSP91DG,B0DMSNHCHV,B0DMSNMY11,B0DMSPJDDY,B0DMSK8JF1",
     "proposition_65_warning": false,
     "has_size_guide": true,
     "categories": [
@@ -278,117 +498,97 @@
     "categories_flat": "Home & Kitchen > Furniture > Living Room Furniture > Sofas & Couches",
     "a_plus_content": {
       "has_a_plus_content": true,
-      "has_brand_story": true,
-      "brand_story": {
-        "brand_logo": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/27618cd8-eeab-4e72-965d-8e37879500b2.__CR0,0,315,145_PT0_SX315_V1___.jpg",
-        "hero_image": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/73ce44a4-652a-41b4-878a-ab856a711249.__CR0,0,1464,625_PT0_SX1464_V1___.jpg",
-        "description": "Looking Ahead with MAXYOYO",
-        "brand_store": {
-          "link": "/stores/page/C60B6187-4503-4378-B845-17871E6F6963",
-          "id": "C60B6187-4503-4378-B845-17871E6F6963"
-        },
-        "images": [
-          "https://m.media-amazon.com/images/S/aplus-media-library-service-media/73ce44a4-652a-41b4-878a-ab856a711249.__CR0,0,1464,625_PT0_SX1464_V1___.jpg",
-          "https://m.media-amazon.com/images/S/aplus-media-library-service-media/d4283ffb-a586-40c4-8270-9b2275361c13.__CR0,0,362,453_PT0_SX362_V1___.jpg",
-          "https://m.media-amazon.com/images/S/aplus-media-library-service-media/6169f6ae-694b-4269-988a-4a620802e41a.__CR0,0,362,453_PT0_SX362_V1___.jpg",
-          "https://m.media-amazon.com/images/S/aplus-media-library-service-media/12d4fe77-47ba-4ced-b73d-db9f381e3235.__CR0,0,362,453_PT0_SX362_V1___.jpg",
-          "https://m.media-amazon.com/images/S/aplus-media-library-service-media/b7eab86f-b040-42d6-8071-4179208d3698.__CR0,0,362,453_PT0_SX362_V1___.jpg",
-          "https://m.media-amazon.com/images/S/aplus-media-library-service-media/141b9542-f987-406e-b2f1-c19e850144e6.__CR0,0,362,453_PT0_SX362_V1___.jpg",
-          "https://m.media-amazon.com/images/S/aplus-media-library-service-media/4494da00-36a6-4c35-a9f4-7d98a8bff445.__CR0,0,362,453_PT0_SX362_V1___.jpg"
-        ]
-      },
-      "third_party": true,
-      "company_logo": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/27618cd8-eeab-4e72-965d-8e37879500b2.__CR0,0,315,145_PT0_SX315_V1___.jpg",
-      "company_description_text": "Looking Ahead with MAXYOYO From individuals to quality-conscious families, from sleep health enthusiasts to home decor creators, our versatile products cater to versatile needs and lifestyles. Our styles and colors are not just decorative accents but also embellishments that add excitement to your journey. We are eagerly anticipating the opportunity to create even more delightful moments together."
+      "has_brand_story": false,
+      "third_party": false
     },
     "sub_title": {
-      "text": "Visit the MAXYOYO Store",
-      "link": "https://www.amazon.com/stores/MAXYOYO/page/D76AA372-DDE6-47BA-86A6-FCF387DB1A93?lp_asin=B0FLDP6QW9&ref_=ast_bln&store_ref=bl_ast_dp_brandLogo_sto"
+      "text": "Visit the Settab Store",
+      "link": "https://www.amazon.com/stores/Settab/page/C220EE04-D5CB-4660-8550-933E74FA9BB3?is_byline_deeplink=true&deeplink=3DF5A9A9-9C43-4F1D-B475-805B36895572&redirect_store_id=C220EE04-D5CB-4660-8550-933E74FA9BB3&lp_asin=B0DMSPJ97J&ref_=ast_bln&store_ref=bl_ast_dp_brandLogo_sto"
     },
     "marketplace_id": "ATVPDKIKX0DER",
-    "rating": 3,
+    "rating": 4.7,
     "rating_breakdown": {
       "five_star": {
-        "percentage": 50,
-        "count": 1
+        "percentage": 83,
+        "count": 275
       },
       "four_star": {
-        "percentage": 0,
-        "count": 0
+        "percentage": 12,
+        "count": 39
       },
       "three_star": {
-        "percentage": 0,
-        "count": 0
+        "percentage": 1,
+        "count": 3
       },
       "two_star": {
-        "percentage": 0,
-        "count": 0
+        "percentage": 2,
+        "count": 6
       },
       "one_star": {
-        "percentage": 50,
-        "count": 1
+        "percentage": 2,
+        "count": 6
       }
     },
-    "ratings_total": 2,
+    "ratings_total": 332,
     "main_image": {
-      "link": "https://m.media-amazon.com/images/I/91dptjLNK9L.jpg"
+      "link": "https://m.media-amazon.com/images/I/81MRuDsR7hL.jpg"
     },
     "images": [
       {
-        "link": "https://m.media-amazon.com/images/I/91dptjLNK9L._AC_SL1500_.jpg",
+        "link": "https://m.media-amazon.com/images/I/81MRuDsR7hL._AC_SL1500_.jpg",
         "variant": "MAIN"
       },
       {
-        "link": "https://m.media-amazon.com/images/I/81u5XPK+LzL._AC_SL1500_.jpg",
+        "link": "https://m.media-amazon.com/images/I/61cElmW0-kL._AC_SL1500_.jpg",
         "variant": "PT01"
       },
       {
-        "link": "https://m.media-amazon.com/images/I/818WUHVd63L._AC_SL1500_.jpg",
+        "link": "https://m.media-amazon.com/images/I/71ZtqO+dYvL._AC_SL1500_.jpg",
         "variant": "PT02"
       },
       {
-        "link": "https://m.media-amazon.com/images/I/91r-rq6gWtL._AC_SL1500_.jpg",
+        "link": "https://m.media-amazon.com/images/I/71Ij6udal1L._AC_SL1500_.jpg",
         "variant": "PT03"
       },
       {
-        "link": "https://m.media-amazon.com/images/I/91UnFoYLdWL._AC_SL1500_.jpg",
+        "link": "https://m.media-amazon.com/images/I/71c94RxPf-L._AC_SL1500_.jpg",
         "variant": "PT04"
       },
       {
-        "link": "https://m.media-amazon.com/images/I/917kEHJa9IL._AC_SL1500_.jpg",
+        "link": "https://m.media-amazon.com/images/I/712Bw+yOdQL._AC_SL1500_.jpg",
         "variant": "PT05"
       },
       {
-        "link": "https://m.media-amazon.com/images/I/810GBZOtwcL._AC_SL1500_.jpg",
+        "link": "https://m.media-amazon.com/images/I/71xTEZCcklL._AC_SL1500_.jpg",
         "variant": "PT06"
       },
       {
-        "link": "https://m.media-amazon.com/images/I/91aS4p-oTrL._AC_SL1500_.jpg",
+        "link": "https://m.media-amazon.com/images/I/71na7n8Lj2L._AC_SL1500_.jpg",
         "variant": "PT07"
       },
       {
-        "link": "https://m.media-amazon.com/images/I/910HRaWucBL._AC_SL1500_.jpg",
+        "link": "https://m.media-amazon.com/images/I/71dxR2bVLvL._AC_SL1500_.jpg",
         "variant": "PT08"
       }
     ],
     "images_count": 9,
-    "images_flat": "https://m.media-amazon.com/images/I/91dptjLNK9L._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/81u5XPK+LzL._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/818WUHVd63L._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/91r-rq6gWtL._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/91UnFoYLdWL._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/917kEHJa9IL._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/810GBZOtwcL._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/91aS4p-oTrL._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/910HRaWucBL._AC_SL1500_.jpg",
-    "videos_count": 3,
+    "images_flat": "https://m.media-amazon.com/images/I/81MRuDsR7hL._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/61cElmW0-kL._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/71ZtqO+dYvL._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/71Ij6udal1L._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/71c94RxPf-L._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/712Bw+yOdQL._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/71xTEZCcklL._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/71na7n8Lj2L._AC_SL1500_.jpg,https://m.media-amazon.com/images/I/71dxR2bVLvL._AC_SL1500_.jpg",
+    "videos_count": 7,
     "has_360_view": false,
     "is_bundle": false,
     "feature_bullets": [
-      "3 Seater Couch Sofa: This 3 seater couch is suitable for parent-child cuddling, family movie watching, or chatting with friends, creating an intimate social space without boundaries. Pillows can meet multifunctional needs, accurately adapting from reading to taking a nap, allowing you to enjoy comfortable rest time",
-      "Tufted Craft & Armrest: Exquisite button tufted details are designed on the cushion and backrests, outlining elegant lines and showcasing style and charm. Paired with widened armrests, it provides ample support for the arms, bringing a comfortable and pleasant resting experience",
-      "Comfort & Support: This 3 seater couch is filled with a whole foam and highly resilient shredded foam, making this bean bag sofa couch both cloud-like and soft to wrap around, but also able to always maintain a stable shape during long-term use, providing users with a long-lasting and high-quality sitting experience",
-      "Textured Corded Fabric: Wrapped in premium corduroy, this sofa couch in a box delivers a soft, skin-friendly feel with stylish ribbed texture. Durable and breathable, it's made to stay plush and beautiful through everyday lounging",
-      "No Assembly Required: Forget about complicated setup! Simply open the package, place it in a ventilated and dry environment, wait for about 48 hours or so to be able to return to its original shape, meanwhile, gently pat each part to improve its elasticity and luster, you can enjoy a comfortable experience!"
+      "No Assembly Required:Say goodbye to furniture assembly nightmares! our minimalist sofas require no tedious assembly to experience instant comfort. Simply unwrap and relax, no tools required. In just a few moments, your comfy cloud couch is ready to be put to use and reach a state of total luxury within 72 hours.",
+      "Modular Sectional Sofa:This U-shaped sectional sofa featuring a sleek design, clean lines, and high-quality plush corduroy Fabric,This minimalist U-shaped sectional set maximizes space when placed against a wall，this corner sofa effortlessly adds a timeless and sophisticated touch to your home. Designed to be the focal point of attention, it's an ideal choice for elevating the ambiance of living rooms, apartments, and bedrooms.",
+      "Plush Corduroy Fabric:Sink into the luxurious softness of our plush corduroy fabric. It feels like silk against your skin! It brings serene comfort and warmth, offering endless comfort.The unique texture and soft sheen make it stand out, providing gentle pampering no matter the season. Upgrade your comfort experience with this amazing fabric",
+      "Comfortable Chaise Lounge Couch:Indulge in luxurious comfort with our sofa set, offering expansive cloud-like seating.Delight in sublime relaxation with our sleeper sofa featuring a chaise, meticulously crafted with a high-resilience sponge structure.Experience seating that contours to your body, surpassing the comfort of traditional sofas",
+      "Flexible & Versatile Living Room Sofa Set: Perfect for living rooms, apartments, bedrooms, guest rooms, and children's play areas, our versatile floor sofa set serves a multitude of functions, encouraging children to play on its luxurious surface. Its modular design facilitates seamless navigation through narrow hallways and tight doorways, ensuring optimal space utilization. Say farewell to relocation concerns, as each piece can be moved independently"
     ],
     "feature_bullets_count": 5,
-    "feature_bullets_flat": "No Assembly Required: Forget about complicated setup! Simply open the package, place it in a ventilated and dry environment, wait for about 48 hours or so to be able to return to its original shape, meanwhile, gently pat each part to improve its elasticity and luster, you can enjoy a comfortable experience!. Textured Corded Fabric: Wrapped in premium corduroy, this sofa couch in a box delivers a soft, skin-friendly feel with stylish ribbed texture. Durable and breathable, it's made to stay plush and beautiful through everyday lounging. Comfort & Support: This 3 seater couch is filled with a whole foam and highly resilient shredded foam, making this bean bag sofa couch both cloud-like and soft to wrap around, but also able to always maintain a stable shape during long-term use, providing users with a long-lasting and high-quality sitting experience. Tufted Craft & Armrest: Exquisite button tufted details are designed on the cushion and backrests, outlining elegant lines and showcasing style and charm. Paired with widened armrests, it provides ample support for the arms, bringing a comfortable and pleasant resting experience. 3 Seater Couch Sofa: This 3 seater couch is suitable for parent-child cuddling, family movie watching, or chatting with friends, creating an intimate social space without boundaries. Pillows can meet multifunctional needs, accurately adapting from reading to taking a nap, allowing you to enjoy comfortable rest time.",
+    "feature_bullets_flat": "Flexible & Versatile Living Room Sofa Set: Perfect for living rooms, apartments, bedrooms, guest rooms, and children's play areas, our versatile floor sofa set serves a multitude of functions, encouraging children to play on its luxurious surface. Its modular design facilitates seamless navigation through narrow hallways and tight doorways, ensuring optimal space utilization. Say farewell to relocation concerns, as each piece can be moved independently. Comfortable Chaise Lounge Couch:Indulge in luxurious comfort with our sofa set, offering expansive cloud-like seating.Delight in sublime relaxation with our sleeper sofa featuring a chaise, meticulously crafted with a high-resilience sponge structure.Experience seating that contours to your body, surpassing the comfort of traditional sofas. Plush Corduroy Fabric:Sink into the luxurious softness of our plush corduroy fabric. It feels like silk against your skin! It brings serene comfort and warmth, offering endless comfort.The unique texture and soft sheen make it stand out, providing gentle pampering no matter the season. Upgrade your comfort experience with this amazing fabric. Modular Sectional Sofa:This U-shaped sectional sofa featuring a sleek design, clean lines, and high-quality plush corduroy Fabric,This minimalist U-shaped sectional set maximizes space when placed against a wall，this corner sofa effortlessly adds a timeless and sophisticated touch to your home. Designed to be the focal point of attention, it's an ideal choice for elevating the ambiance of living rooms, apartments, and bedrooms. No Assembly Required:Say goodbye to furniture assembly nightmares! our minimalist sofas require no tedious assembly to experience instant comfort. Simply unwrap and relax, no tools required. In just a few moments, your comfy cloud couch is ready to be put to use and reach a state of total luxury within 72 hours.",
     "buying_options": [
       {
-        "title": "Ships from Amazon",
-        "image": "https://m.media-amazon.com/images/G/01/VAS/TrustWidget/ShipByAmz._CB611763802_.png"
+        "title": "Ships from Settab",
+        "image": "https://m.media-amazon.com/images/G/01/VAS/TrustWidget/ShipBy3P._CB611763802_.png"
       },
       {
         "title": "30-day easy returns",
@@ -399,87 +599,197 @@
         "image": "https://m.media-amazon.com/images/G/01/VAS/TrustWidget/CustomerSupport._CB631535167_.png"
       }
     ],
+    "important_information": {
+      "sections": [
+        {
+          "body": "Always ensure adequate space behind and in front of the sofa for the mechanism to operate fully"
+        }
+      ]
+    },
     "top_reviews": [
       {
-        "id": "R3FN5YNBMEZQLF",
-        "title": "comfortable",
-        "body": "Kinda small like made for small people. I have a small space and works perfectly for me. I am 5’5 and could easily sleep on this sofa. My husband is 5’9 and he could too. For the price it’s a great buy. Read more",
-        "body_html": "<script>   (function() {    P.when(&apos;cr-A&apos;, &apos;ready&apos;).execute(function(A) {     if(typeof A.toggleExpanderAriaLabel === &apos;function&apos;) {      A.toggleExpanderAriaLabel(&apos;review_text_read_more&apos;, &apos;Read more of this review&apos;, &apos;Read less of this review&apos;);     }    });   })();  </script>  <style>   .review-text-read-more-expander:focus-visible {    outline: 2px solid #2162a1;    outline-offset: 2px;    border-radius: 5px;   }  </style> <div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container review-text-read-more-expander\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" data-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>Kinda small like made for small people. I have a small space and works perfectly for me. I am 5&#x2019;5 and could easily sleep on this sofa. My husband is 5&#x2019;9 and he could too. For the price it&#x2019;s a great buy.<br/></span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"/><a href=\"javascript:void(0)\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Read more of this review\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"/><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
-        "link": "https://www.amazon.com/gp/customer-reviews/R3FN5YNBMEZQLF/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
+        "id": "RVEI36NTVPU60",
+        "title": "Gorgeous, Sturdy, and Worth Every Penny!",
+        "body": "I originally ordered just the couch, and I was so impressed once it arrived that I immediately went back and ordered the ottoman too! The quality completely exceeded my expectations — the couch is sturdy, firm, and supportive, but still super comfortable. The fabric is soft and stylish, and I’ve gotten so many compliments from friends and family already.  It arrived quickly, was incredibly easy to set up, and customer service was excellent beyond expectations — responsive, helpful, and truly cared about my experience.  I’m 100% happy with this purchase. If you’re thinking about it — just do it! It transformed my living space and gave me exactly the comfort and style I was hoping for. Read more",
+        "body_html": "<script>   (function() {    P.when(&apos;cr-A&apos;, &apos;ready&apos;).execute(function(A) {     if(typeof A.toggleExpanderAriaLabel === &apos;function&apos;) {      A.toggleExpanderAriaLabel(&apos;review_text_read_more&apos;, &apos;Read more of this review&apos;, &apos;Read less of this review&apos;);     }    });   })();  </script>  <style>   .review-text-read-more-expander:focus-visible {    outline: 2px solid #2162a1;    outline-offset: 2px;    border-radius: 5px;   }  </style> <div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container review-text-read-more-expander\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" data-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>I originally ordered just the couch, and I was so impressed once it arrived that I immediately went back and ordered the ottoman too! The quality completely exceeded my expectations &#x2014; the couch is sturdy, firm, and supportive, but still super comfortable. The fabric is soft and stylish, and I&#x2019;ve gotten so many compliments from friends and family already.<br/><br/>It arrived quickly, was incredibly easy to set up, and customer service was excellent beyond expectations &#x2014; responsive, helpful, and truly cared about my experience.<br/><br/>I&#x2019;m 100% happy with this purchase. If you&#x2019;re thinking about it &#x2014; just do it! It transformed my living space and gave me exactly the comfort and style I was hoping for.<br/></span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"/><a href=\"javascript:void(0)\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Read more of this review\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"/><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "link": "https://www.amazon.com/gp/customer-reviews/RVEI36NTVPU60/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
         "rating": 5,
         "date": {
-          "raw": "Reviewed in the United States on October 4, 2025",
-          "utc": "2025-10-04T00:00:00.000Z"
+          "raw": "Reviewed in the United States on June 21, 2025",
+          "utc": "2025-06-21T00:00:00.000Z"
         },
         "profile": {
-          "name": "lori mccoy",
-          "link": "https://www.amazon.com/gp/profile/amzn1.account.AG2UYDRYQ6ASRPCWRUDQ2QIUFF2Q/ref=cm_cr_dp_d_gw_tr?ie=UTF8",
-          "id": "AG2UYDRYQ6ASRPCWRUDQ2QIUFF2Q"
+          "name": "Trisha S.",
+          "link": "https://www.amazon.com/gp/profile/amzn1.account.AGRISJKQHURY7KHC5KYB5IRAJ7FA/ref=cm_cr_dp_d_gw_tr?ie=UTF8",
+          "id": "AGRISJKQHURY7KHC5KYB5IRAJ7FA"
         },
         "vine_program": false,
         "verified_purchase": true,
-        "review_country": "us",
-        "is_global_review": false,
-        "review_attributes": [
+        "images": [
           {
-            "Size": "3 Seater"
-          },
-          {
-            "Color": "Dark Grey"
-          }
-        ]
-      },
-      {
-        "id": "R1CPQOZ7SDCE1Y",
-        "title": "Faulty Couch Did Not Assemble On Its Own Correctly",
-        "body": "The media could not be loaded. One arm rest just didnt expand. Read more",
-        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container review-text-read-more-expander\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" data-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\"><div id=\"video-block-R1CPQOZ7SDCE1Y\" class=\"a-section a-spacing-small a-spacing-top-mini video-block\">                                                  <div id=\"review-video-id-R1CPQOZ7SDCE1Y\" class=\"cr-video-desktop cr-video-desktop-placeholder\" data-review-id=\"R1CPQOZ7SDCE1Y\" data-video-url=\"https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-us-east-1-prod/7e232a77-08d9-4751-bdde-520ff6c4d3a0/default.vertical.jobtemplate.hls.m3u8\" data-closed-captions=\"en,https://m.media-amazon.com/images/S/vse-vms-closed-captions-artifact-us-east-1-prod/closedCaptions/a0daf106-c75c-4235-ab79-3af281b56f00.vtt\" data-thumbnail-url=\"https://m.media-amazon.com/images/I/71JvBU74ONL._SY256.jpg\">       <div class=\"cr-media-status-container\">     <span class=\"a-spinner a-spinner-medium cr-media-spinner\"/>     <span class=\"a-color-inverse cr-media-error-msg\">      The media could not be loaded.     </span>    </div>     </div>                </div><input type=\"hidden\" name=\"\" value=\"https://m.media-amazon.com/images/I/F1We2OqSAfL.mp4\" class=\"video-url\"/><input type=\"hidden\" name=\"\" value=\"https://m.media-amazon.com/images/I/71JvBU74ONL._SY256.jpg\" class=\"video-slate-img-url\"/>             <span>One arm rest just didnt expand.<br/></span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"/><a href=\"javascript:void(0)\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Read more of this review\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"/><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
-        "link": "https://www.amazon.com/gp/customer-reviews/R1CPQOZ7SDCE1Y/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
-        "rating": 1,
-        "date": {
-          "raw": "Reviewed in the United States on October 10, 2025",
-          "utc": "2025-10-10T00:00:00.000Z"
-        },
-        "profile": {
-          "name": "Trace Holt",
-          "link": "https://www.amazon.com/gp/profile/amzn1.account.AEYLVGFAYQKFCWMRN563F2AVUP5Q/ref=cm_cr_dp_d_gw_tr?ie=UTF8",
-          "id": "AEYLVGFAYQKFCWMRN563F2AVUP5Q"
-        },
-        "vine_program": false,
-        "verified_purchase": true,
-        "videos": [
-          {
-            "video": "https://m.media-amazon.com/images/I/F1We2OqSAfL.mp4",
-            "image": "https://m.media-amazon.com/images/I/71JvBU74ONL._SY256.jpg"
+            "link": "https://images-na.ssl-images-amazon.com/images/G/01/x-locale/common/grey-pixel.gif"
           }
         ],
-        "helpful_votes": 4,
+        "helpful_votes": 67,
         "review_country": "us",
         "is_global_review": false,
         "review_attributes": [
           {
-            "Size": "3 Seater"
+            "Size": "2 seater+Left Facing Chaise"
           },
           {
-            "Color": "Dark Grey"
+            "Color": "Camel"
           }
         ]
       },
       {
-        "id": "RYCW0JETFK0JE",
-        "title": "Satisfied",
-        "body": "I like it. It is a little closer to the ground than I expected. My bad measurements were in the product description. I am 5 foot so it’s fine for me. Anyone taller might find it annoying. But it’s so far nice for the price. I did allow it a week to fluff up after taking it out of the bag I feel like it did get larger. I kept the cushions off for that process. Read more",
-        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container review-text-read-more-expander\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" data-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>I like it. It is a little closer to the ground than I expected. My bad measurements were in the product description. I am 5 foot so it&#x2019;s fine for me. Anyone taller might find it annoying. But it&#x2019;s so far nice for the price. I did allow it a week to fluff up after taking it out of the bag I feel like it did get larger. I kept the cushions off for that process.<br/></span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"/><a href=\"javascript:void(0)\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Read more of this review\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"/><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
-        "link": "https://www.amazon.com/gp/customer-reviews/RYCW0JETFK0JE/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
-        "rating": 3,
+        "id": "R18HXLNGBSEO3P",
+        "title": "This couch is worth it. Just don’t put a smaller couch in a big room.",
+        "body": "Excellent couch. Got the chaise and the ottoman one in black. Expands nicely and very easily. I would put it against a wall so you can put extra pillows behind the main pillows if you are tall. Couch is firm but it will gradually soften as time goes on. If you have small kids this couch is the safest couch as there is nothing hard on it. My 4 yr old grandson loves to jump on it and also take a nap. The fabric is soooo comfortable and soft. Wipe up messes easily. Can move ottoman to middle or one side. It fits a lot of us. It’s worth it. I was tired of looking for couches that were not comfortable and were expensive. Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container review-text-read-more-expander\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" data-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>Excellent couch. Got the chaise and the ottoman one in black. Expands nicely and very easily. I would put it against a wall so you can put extra pillows behind the main pillows if you are tall. Couch is firm but it will gradually soften as time goes on. If you have small kids this couch is the safest couch as there is nothing hard on it. My 4 yr old grandson loves to jump on it and also take a nap. The fabric is soooo comfortable and soft. Wipe up messes easily. Can move ottoman to middle or one side. It fits a lot of us. It&#x2019;s worth it. I was tired of looking for couches that were not comfortable and were expensive.<br/></span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"/><a href=\"javascript:void(0)\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Read more of this review\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"/><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "link": "https://www.amazon.com/gp/customer-reviews/R18HXLNGBSEO3P/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
+        "rating": 5,
         "date": {
-          "raw": "Reviewed in the United States on October 18, 2025",
-          "utc": "2025-10-18T00:00:00.000Z"
+          "raw": "Reviewed in the United States on July 7, 2025",
+          "utc": "2025-07-07T00:00:00.000Z"
         },
         "profile": {
-          "name": "Rita Stroe",
-          "link": "https://www.amazon.com/gp/profile/amzn1.account.AF7VKX5C5NOFCBBT2GZCC7QBJ3XA/ref=cm_cr_dp_d_gw_tr?ie=UTF8",
-          "id": "AF7VKX5C5NOFCBBT2GZCC7QBJ3XA"
+          "name": "SC",
+          "link": "https://www.amazon.com/gp/profile/amzn1.account.AGNCWR43UKR5CUZAGSN3DAXDXNIA/ref=cm_cr_dp_d_gw_tr?ie=UTF8",
+          "id": "AGNCWR43UKR5CUZAGSN3DAXDXNIA"
+        },
+        "vine_program": false,
+        "verified_purchase": true,
+        "helpful_votes": 26,
+        "review_country": "us",
+        "is_global_review": false,
+        "review_attributes": [
+          {
+            "Size": "2 seater+Right Facing Chaise+ottoman"
+          },
+          {
+            "Color": "Black"
+          }
+        ]
+      },
+      {
+        "id": "RUO7N3A4ZEPFD",
+        "title": "Really fabulous sofa",
+        "body": "After a lot of \"window shopping\" for a new sectional sofa, I saw this one and fell in love with the style and the price. Lived with our new sofa for a couple of weeks now, and we just love it more and more. It is firm, but comfortable, fabric is soft and it is easy to set up and move around. The only downside is that the back of the sofa is too low to completely support the back pillows, but I fixed that with rectangular bolster pillows placed behind the back pillows. This sofa replaces a 12 year old Ikea sectional that was more expensive and not nearly as comfy. I just wish there was a way to order replacement covers in case I want to change the color! Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container review-text-read-more-expander\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" data-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>After a lot of &quot;window shopping&quot; for a new sectional sofa, I saw this one and fell in love with the style and the price. Lived with our new sofa for a couple of weeks now, and we just love it more and more. It is firm, but comfortable, fabric is soft and it is easy to set up and move around. The only downside is that the back of the sofa is too low to completely support the back pillows, but I fixed that with rectangular bolster pillows placed behind the back pillows. This sofa replaces a 12 year old Ikea sectional that was more expensive and not nearly as comfy. I just wish there was a way to order replacement covers in case I want to change the color!<br/></span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"/><a href=\"javascript:void(0)\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Read more of this review\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"/><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "link": "https://www.amazon.com/gp/customer-reviews/RUO7N3A4ZEPFD/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
+        "rating": 5,
+        "date": {
+          "raw": "Reviewed in the United States on September 16, 2025",
+          "utc": "2025-09-16T00:00:00.000Z"
+        },
+        "profile": {
+          "name": "kathy",
+          "link": "https://www.amazon.com/gp/profile/amzn1.account.AHGE7JTUASUADL2NSMPW727RHKHQ/ref=cm_cr_dp_d_gw_tr?ie=UTF8",
+          "id": "AHGE7JTUASUADL2NSMPW727RHKHQ"
+        },
+        "vine_program": false,
+        "verified_purchase": true,
+        "images": [
+          {
+            "link": "https://images-na.ssl-images-amazon.com/images/G/01/x-locale/common/grey-pixel.gif"
+          }
+        ],
+        "helpful_votes": 22,
+        "review_country": "us",
+        "is_global_review": false,
+        "review_attributes": [
+          {
+            "Size": "3 seater+Right Facing Chaise+ottoman"
+          },
+          {
+            "Color": "Black"
+          }
+        ]
+      },
+      {
+        "id": "R1Q8FS1EP5O07W",
+        "title": "Its a yes!!!!",
+        "body": "This couch is VERY comfortable! As all the other reviews rave about it is wonderful to not have to assemble anything. Just remove from the box, carefully remove from plastic wrap and allow it time to expand. It's the most favorite spot in our house for the whole family now. Our family of 5 fits very comfortably on it. The backrest is very low, so it's much more for lounging on which suits us perfectly. Its firm but gives in just the right way so no pressure points. Its very sturdy! The fabric is so soft and easy to wipe clean and it has a zipper so you can remove the whole cover! We had an issue with one of our sections and I reached out to the seller and they were extremely prompt in reply and they solved the entire issue without any headache at all! Fantastic product; fantastic customer service. Its a win all around! Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container review-text-read-more-expander\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" data-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>This couch is VERY comfortable! As all the other reviews rave about it is wonderful to not have to assemble anything. Just remove from the box, carefully remove from plastic wrap and allow it time to expand. It&apos;s the most favorite spot in our house for the whole family now. Our family of 5 fits very comfortably on it. The backrest is very low, so it&apos;s much more for lounging on which suits us perfectly. Its firm but gives in just the right way so no pressure points. Its very sturdy! The fabric is so soft and easy to wipe clean and it has a zipper so you can remove the whole cover! We had an issue with one of our sections and I reached out to the seller and they were extremely prompt in reply and they solved the entire issue without any headache at all! Fantastic product; fantastic customer service. Its a win all around!<br/></span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"/><a href=\"javascript:void(0)\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Read more of this review\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"/><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "link": "https://www.amazon.com/gp/customer-reviews/R1Q8FS1EP5O07W/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
+        "rating": 5,
+        "date": {
+          "raw": "Reviewed in the United States on August 2, 2025",
+          "utc": "2025-08-02T00:00:00.000Z"
+        },
+        "profile": {
+          "name": "Smarti",
+          "link": "https://www.amazon.com/gp/profile/amzn1.account.AF7XOPCRUJ3PTRMPLZOZU76WMQ5Q/ref=cm_cr_dp_d_gw_tr?ie=UTF8",
+          "id": "AF7XOPCRUJ3PTRMPLZOZU76WMQ5Q"
+        },
+        "vine_program": false,
+        "verified_purchase": true,
+        "helpful_votes": 20,
+        "review_country": "us",
+        "is_global_review": false,
+        "review_attributes": [
+          {
+            "Size": "2 seater+Left Facing Chaise+ottoman"
+          },
+          {
+            "Color": "Grey"
+          }
+        ]
+      },
+      {
+        "id": "R117CE7AGDP5DF",
+        "title": "For a cheap couch, worth every penny.",
+        "body": "Came in four boxes, 2 came one day 2 came the next. Was a little worried when I only got tracking for one box until I asked the seller.  For the price I would say you cannot beat the price. My only complaint is it is a little low to the ground, so probably not good for people who have trouble standing up.  I find it firm and comfortable even before giving it the whole three days to expand fully, don't think it will grow much but it doesn't need to was the perfect size or a large couch someone could sleep on if needed.  I highly recommend for anyone wanting a large couch that might be hard to get into the space if it was a more expensive wood framed couch.  At the end of the day the price and how easy it is to get into a space more expensive furniture would be hard to get into.  The photos do not do justice to the size. Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container review-text-read-more-expander\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" data-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>Came in four boxes, 2 came one day 2 came the next. Was a little worried when I only got tracking for one box until I asked the seller.<br/><br/>For the price I would say you cannot beat the price.<br/>My only complaint is it is a little low to the ground, so probably not good for people who have trouble standing up.<br/><br/>I find it firm and comfortable even before giving it the whole three days to expand fully, don&apos;t think it will grow much but it doesn&apos;t need to was the perfect size or a large couch someone could sleep on if needed.<br/><br/>I highly recommend for anyone wanting a large couch that might be hard to get into the space if it was a more expensive wood framed couch.<br/><br/>At the end of the day the price and how easy it is to get into a space more expensive furniture would be hard to get into.<br/><br/>The photos do not do justice to the size.<br/></span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"/><a href=\"javascript:void(0)\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Read more of this review\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"/><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "link": "https://www.amazon.com/gp/customer-reviews/R117CE7AGDP5DF/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
+        "rating": 4,
+        "date": {
+          "raw": "Reviewed in the United States on August 3, 2025",
+          "utc": "2025-08-03T00:00:00.000Z"
+        },
+        "profile": {
+          "name": "Carruth",
+          "link": "https://www.amazon.com/gp/profile/amzn1.account.AHZ5ZLPOPM2FX763MPOMC5XXSABQ/ref=cm_cr_dp_d_gw_tr?ie=UTF8",
+          "id": "AHZ5ZLPOPM2FX763MPOMC5XXSABQ"
+        },
+        "vine_program": false,
+        "verified_purchase": true,
+        "images": [
+          {
+            "link": "https://images-na.ssl-images-amazon.com/images/G/01/x-locale/common/grey-pixel.gif"
+          },
+          {
+            "link": "https://images-na.ssl-images-amazon.com/images/G/01/x-locale/common/grey-pixel.gif"
+          }
+        ],
+        "helpful_votes": 3,
+        "review_country": "us",
+        "is_global_review": false,
+        "review_attributes": [
+          {
+            "Size": "3 seater+Left Facing Chaise+ottoman"
+          },
+          {
+            "Color": "Black"
+          }
+        ]
+      },
+      {
+        "id": "RTF0Z2KXHBHEA",
+        "title": "We love this couch",
+        "body": "Couch is super comfortable and way bigger than expected. My kids love it, easy to move around, very easy to set up, very functional, looks and feels amazing. I was questioning the back support from reading other reviews but we have had no issues, the back pillows are thick and sturdy which really help with the back support. Their customer service is excellent, I had a few questions and they immediately got back to me, and went above and beyond to fix something that wasn’t their fault. Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container review-text-read-more-expander\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" data-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>Couch is super comfortable and way bigger than expected. My kids love it, easy to move around, very easy to set up, very functional, looks and feels amazing. I was questioning the back support from reading other reviews but we have had no issues, the back pillows are thick and sturdy which really help with the back support. Their customer service is excellent, I had a few questions and they immediately got back to me, and went above and beyond to fix something that wasn&#x2019;t their fault.<br/></span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"/><a href=\"javascript:void(0)\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Read more of this review\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"/><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "link": "https://www.amazon.com/gp/customer-reviews/RTF0Z2KXHBHEA/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
+        "rating": 5,
+        "date": {
+          "raw": "Reviewed in the United States on October 17, 2025",
+          "utc": "2025-10-17T00:00:00.000Z"
+        },
+        "profile": {
+          "name": "Karla S.",
+          "link": "https://www.amazon.com/gp/profile/amzn1.account.AEYQSE2CQSINOEX5TZBZ7VE2PMOA/ref=cm_cr_dp_d_gw_tr?ie=UTF8",
+          "id": "AEYQSE2CQSINOEX5TZBZ7VE2PMOA"
         },
         "vine_program": false,
         "verified_purchase": true,
@@ -487,35 +797,90 @@
         "is_global_review": false,
         "review_attributes": [
           {
-            "Size": "3 Seater"
+            "Size": "3 seater+Left Facing Chaise"
           },
           {
-            "Color": "Dark Grey"
+            "Color": "Camel"
+          }
+        ]
+      },
+      {
+        "id": "RDZ1Y8LFPXL8",
+        "title": "Best purchase ever !",
+        "body": "⭐️⭐️⭐️⭐️⭐️ I was skeptical about ordering this couch, but I’m honestly amazed at how great it turned out. The quality is solid, especially for the price—it feels well-built and durable. The fabric is soft and cozy, while still looking stylish in my living room. It’s super comfortable whether you’re sitting upright or stretching out, and the cushions expanded a lot faster than I expected. In less than 24 hours it already looked full and inviting, and it keeps getting better as it settles.  Another big plus is how much seating space it offers without overwhelming the room—it fits perfectly and feels both functional and modern. Overall, I couldn’t be happier with this purchase. If you’re on the fence, this couch is definitely worth it! Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container review-text-read-more-expander\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" data-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>&#x2B50;&#xFE0F;&#x2B50;&#xFE0F;&#x2B50;&#xFE0F;&#x2B50;&#xFE0F;&#x2B50;&#xFE0F;<br/>I was skeptical about ordering this couch, but I&#x2019;m honestly amazed at how great it turned out. The quality is solid, especially for the price&#x2014;it feels well-built and durable. The fabric is soft and cozy, while still looking stylish in my living room. It&#x2019;s super comfortable whether you&#x2019;re sitting upright or stretching out, and the cushions expanded a lot faster than I expected. In less than 24 hours it already looked full and inviting, and it keeps getting better as it settles.<br/><br/>Another big plus is how much seating space it offers without overwhelming the room&#x2014;it fits perfectly and feels both functional and modern. Overall, I couldn&#x2019;t be happier with this purchase. If you&#x2019;re on the fence, this couch is definitely worth it!<br/></span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"/><a href=\"javascript:void(0)\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Read more of this review\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"/><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "link": "https://www.amazon.com/gp/customer-reviews/RDZ1Y8LFPXL8/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
+        "rating": 5,
+        "date": {
+          "raw": "Reviewed in the United States on September 7, 2025",
+          "utc": "2025-09-07T00:00:00.000Z"
+        },
+        "profile": {
+          "name": "Abigail Figueroa",
+          "link": "https://www.amazon.com/gp/profile/amzn1.account.AF76ZE52XJYFDUYSQVREZPOETFDA/ref=cm_cr_dp_d_gw_tr?ie=UTF8",
+          "id": "AF76ZE52XJYFDUYSQVREZPOETFDA"
+        },
+        "vine_program": false,
+        "verified_purchase": true,
+        "images": [
+          {
+            "link": "https://images-na.ssl-images-amazon.com/images/G/01/x-locale/common/grey-pixel.gif"
+          }
+        ],
+        "helpful_votes": 10,
+        "review_country": "us",
+        "is_global_review": false,
+        "review_attributes": [
+          {
+            "Size": "2 seater+Left Facing Chaise"
+          },
+          {
+            "Color": "Grey"
+          }
+        ]
+      },
+      {
+        "id": "RA7DVANLYCSAZ",
+        "title": "Great couch",
+        "body": "Bought this for our son’s apartment and it has not disappointed. The color was just as described, so easy to unpack and let it do its thing with filling and looks amazing in his new apartment. I was surprised at how comfy it is too!! Great quality for the price paid! Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container review-text-read-more-expander\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" data-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>Bought this for our son&#x2019;s apartment and it has not disappointed. The color was just as described, so easy to unpack and let it do its thing with filling and looks amazing in his new apartment. I was surprised at how comfy it is too!! Great quality for the price paid!<br/></span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"/><a href=\"javascript:void(0)\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Read more of this review\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"/><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "link": "https://www.amazon.com/gp/customer-reviews/RA7DVANLYCSAZ/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
+        "rating": 5,
+        "date": {
+          "raw": "Reviewed in the United States on October 3, 2025",
+          "utc": "2025-10-03T00:00:00.000Z"
+        },
+        "profile": {
+          "name": "Carrie H",
+          "link": "https://www.amazon.com/gp/profile/amzn1.account.AGE4IQEZGZROJYQHIWLKM6YH7DBQ/ref=cm_cr_dp_d_gw_tr?ie=UTF8",
+          "id": "AGE4IQEZGZROJYQHIWLKM6YH7DBQ"
+        },
+        "vine_program": false,
+        "verified_purchase": true,
+        "review_country": "us",
+        "is_global_review": false,
+        "review_attributes": [
+          {
+            "Size": "2 seater+Right Facing Chaise"
+          },
+          {
+            "Color": "Camel"
           }
         ]
       }
     ],
     "buybox_winner": {
       "maximum_order_quantity": {
-        "value": 5,
+        "value": 30,
         "hard_maximum": true
       },
       "protection_plans": [
-        {
-          "name": "2-Year Protection Plan",
-          "duration_months": 24,
-          "price": {
-            "billing_type": "one_time",
-            "value": "52.99",
-            "currency": "USD"
-          }
-        },
         {
           "name": "3-Year Protection Plan",
           "duration_months": 36,
           "price": {
             "billing_type": "one_time",
-            "value": "67.99",
+            "value": "129.99",
             "currency": "USD"
           }
         },
@@ -533,7 +898,7 @@
         "duration_days": 30,
         "type": "refund/replacement"
       },
-      "is_prime": true,
+      "is_prime": false,
       "is_prime_exclusive_deal": false,
       "is_amazon_fresh": false,
       "condition": {
@@ -545,26 +910,32 @@
         "dispatch_days": 1
       },
       "fulfillment": {
-        "type": "2p",
+        "type": "3p",
         "standard_delivery": {
-          "date": "Tuesday, October 28",
+          "date": "Tuesday, November 4",
           "name": "FREE"
         },
         "is_sold_by_amazon": false,
-        "is_fulfilled_by_amazon": true,
-        "is_fulfilled_by_third_party": false,
+        "is_fulfilled_by_amazon": false,
+        "is_fulfilled_by_third_party": true,
         "is_sold_by_third_party": true,
         "third_party_seller": {
-          "name": "YoYo Mall",
-          "link": "https://www.amazon.com/gp/help/seller/at-a-glance.html/ref=dp_merchant_link?ie=UTF8&seller=ACEQLX2WNDIFI&asin=B0FLDP6QW9&ref_=dp_merchant_link&isAmazonFulfilled=1",
-          "id": "ACEQLX2WNDIFI"
+          "name": "Settab",
+          "link": "https://www.amazon.com/gp/help/seller/at-a-glance.html/ref=dp_merchant_link?ie=UTF8&seller=A3VTL1TBOJXIRS&asin=B0DMSPJ97J&ref_=dp_merchant_link",
+          "id": "A3VTL1TBOJXIRS"
         }
       },
       "price": {
         "symbol": "$",
-        "value": 289.99,
+        "value": 649,
         "currency": "USD",
-        "raw": "$289.99"
+        "raw": "$649.00"
+      },
+      "rrp": {
+        "symbol": "$",
+        "value": 749,
+        "currency": "USD",
+        "raw": "$749.00"
       },
       "shipping": {
         "raw": "FREE"
@@ -573,79 +944,99 @@
     "specifications": [
       {
         "name": "Brand",
-        "value": "MAXYOYO"
+        "value": "Settab"
       },
       {
         "name": "Assembly Required",
         "value": "No"
       },
       {
+        "name": "Seat Depth",
+        "value": "20.9 inches"
+      },
+      {
+        "name": "Seat Height",
+        "value": "15.7 Inches"
+      },
+      {
+        "name": "Weight Limit",
+        "value": "1400 Pounds"
+      },
+      {
         "name": "Product Dimensions",
-        "value": "31.5\"D x 74.8\"W x 21.5\"H"
+        "value": "68.9\"D x 107.5\"W x 36.3\"H"
+      },
+      {
+        "name": "Item Weight",
+        "value": "172.3 Pounds"
       },
       {
         "name": "Type",
-        "value": "Loveseat"
+        "value": "Sectional"
       },
       {
         "name": "Color",
-        "value": "Dark Grey"
+        "value": "Black"
       },
       {
         "name": "Special Feature",
-        "value": "Arm Rest + Pillow"
-      },
-      {
-        "name": "Upholstery Fabric Type",
-        "value": "Corduroy"
-      },
-      {
-        "name": "Room Type",
-        "value": "Living Room"
-      },
-      {
-        "name": "Arm Style",
-        "value": "Track"
-      },
-      {
-        "name": "Back Style",
-        "value": "Tufted Back"
+        "value": "Space Saving"
       },
       {
         "name": "Brand Name",
-        "value": "MAXYOYO"
+        "value": "Settab"
       },
       {
         "name": "Sofa Type",
-        "value": "Loveseat"
+        "value": "Sectional"
+      },
+      {
+        "name": "Room Type",
+        "value": "Apartment, Bedroom, Living Room"
+      },
+      {
+        "name": "Age Range Description",
+        "value": "Adult"
+      },
+      {
+        "name": "Seat Cushion Quantity",
+        "value": "3"
       },
       {
         "name": "Indoor Outdoor Usage",
         "value": "Indoor"
       },
       {
+        "name": "Orientation",
+        "value": "Left Hand Facing"
+      },
+      {
         "name": "Included Components",
-        "value": "Throw Pillow"
+        "value": "Ottoman"
+      },
+      {
+        "name": "Included Throw Pillow Quantity",
+        "value": "2"
       },
       {
         "name": "Customer Reviews",
-        "value": "3.0    3.0 out of 5 stars         2 ratings          3.0 out of 5 stars"
+        "value": "4.7    4.7 out of 5 stars         332 ratings          4.7 out of 5 stars"
       },
       {
         "name": "Best Sellers Rank",
-        "value": "#50,165 in Home & Kitchen (See Top 100 in Home & Kitchen) #36 in Sofas & Couches"
+        "value": "#25,448 in Home & Kitchen (See Top 100 in Home & Kitchen) #12 in Sofas & Couches"
       },
       {
         "name": "ASIN",
-        "value": "B0FLDP6QW9"
+        "value": "B0DMSPJ97J"
       },
       {
         "name": "Item Height",
-        "value": "21.5 inches"
+        "value": "36.3 inches"
       },
       {
         "name": "Manufacturer",
-        "value": "MAXYOYO"
+        "value": "Settab"
       },
       {
         "name": "Style Name",
@@ -653,19 +1044,31 @@
       },
       {
         "name": "Shape",
-        "value": "Rectangular"
+        "value": "Semicircular"
+      },
+      {
+        "name": "Arm Style",
+        "value": "Straight"
+      },
+      {
+        "name": "Back Style",
+        "value": "Cushion Back, Pillow Back"
       },
       {
         "name": "Cushion Style",
-        "value": "Tufted"
+        "value": "Knife Edge"
       },
       {
         "name": "Upholstery Color",
-        "value": "Dark Grey"
+        "value": "Black"
       },
       {
         "name": "Required Assembly",
         "value": "No"
+      },
+      {
+        "name": "Warranty Type",
+        "value": "Limited"
       },
       {
         "name": "Component Connector Assembly",
@@ -673,23 +1076,35 @@
       },
       {
         "name": "Item Dimensions D x W x H",
-        "value": "31.5\"D x 74.8\"W x 21.5\"H"
+        "value": "68.9\"D x 107.5\"W x 36.3\"H"
       },
       {
         "name": "Size",
-        "value": "3 Seater"
+        "value": "2 seater+Left Facing Chaise+ottoman"
+      },
+      {
+        "name": "Minimum Required Door Width",
+        "value": "107.5 Inches"
+      },
+      {
+        "name": "Arm Width",
+        "value": "11.8 Inches"
+      },
+      {
+        "name": "Weight Capacity Maximum",
+        "value": "1400 Pounds"
       },
       {
         "name": "Seating Capacity",
-        "value": "3.0"
+        "value": "5.0"
       },
       {
         "name": "Additional Features",
-        "value": "Arm Rest + Pillow"
+        "value": "Space Saving"
       },
       {
         "name": "Item Firmness Description",
-        "value": "medium"
+        "value": "Plush"
       },
       {
         "name": "Seat Cushion Configuration",
@@ -700,16 +1115,32 @@
         "value": "No"
       },
       {
+        "name": "Upholstery Fabric Type",
+        "value": "Faux Fur"
+      },
+      {
+        "name": "Frame Material Type",
+        "value": "Metal"
+      },
+      {
         "name": "Material Type",
-        "value": "Artificial Leather"
+        "value": "Metal, Corduroy"
       },
       {
         "name": "Has Removable Seat Cushion Cover",
         "value": "false"
       },
       {
+        "name": "Product Care Instructions",
+        "value": "Spot Clean with Damp Cloth"
+      },
+      {
         "name": "Seat Fill Material",
         "value": "Foam"
+      },
+      {
+        "name": "Furniture Leg Material",
+        "value": "Wood"
       },
       {
         "name": "Seat Back Fill Material",
@@ -717,72 +1148,82 @@
       },
       {
         "name": "Fill Material",
-        "value": "Chipped Foam"
+        "value": "Memory Foam"
       },
       {
         "name": "Material Features",
-        "value": "Faux Leather, Corduroy Texture"
+        "value": "Breathable"
+      },
+      {
+        "name": "Cushion Construction",
+        "value": "Foam"
       }
     ],
-    "specifications_flat": "Material Features: Faux Leather, Corduroy Texture. Fill Material: Chipped Foam. Seat Back Fill Material: Foam. Seat Fill Material: Foam. Has Removable Seat Cushion Cover: false. Material Type: Artificial Leather. Is Customizable?: No. Seat Cushion Configuration: Multiple Cushion Seat. Item Firmness Description: medium. Additional Features: Arm Rest + Pillow. Seating Capacity: 3.0. Size: 3 Seater. Item Dimensions D x W x H: 31.5\"D x 74.8\"W x 21.5\"H. Component Connector Assembly: Not Required. Required Assembly: No. Upholstery Color: Dark Grey. Cushion Style: Tufted. Shape: Rectangular. Style Name: Modern. Manufacturer: MAXYOYO. Item Height: 21.5 inches. ASIN: B0FLDP6QW9. Best Sellers Rank: #50,165 in Home & Kitchen (See Top 100 in Home & Kitchen) #36 in Sofas & Couches. Customer Reviews: 3.0    3.0 out of 5 stars         2 ratings          3.0 out of 5 stars. Included Components: Throw Pillow. Indoor Outdoor Usage: Indoor. Sofa Type: Loveseat. Brand Name: MAXYOYO. Back Style: Tufted Back. Arm Style: Track. Room Type: Living Room. Upholstery Fabric Type: Corduroy. Special Feature: Arm Rest + Pillow. Color: Dark Grey. Type: Loveseat. Product Dimensions: 31.5\"D x 74.8\"W x 21.5\"H. Assembly Required: No. Brand: MAXYOYO.",
-    "recent_sales": "50+ bought in past month",
-    "color": "Dark Grey",
-    "material": "Faux Leather, Corduroy Texture",
-    "manufacturer": "MAXYOYO",
-    "dimensions": "31.5\"D x 74.8\"W x 21.5\"H"
-  },
-  "climate_pledge_friendly": {
-    "text": "Climate Pledge Friendly",
-    "image": "https://images-na.ssl-images-amazon.com/images/G/01/x-locale/common/grey-pixel.gif"
+    "specifications_flat": "Cushion Construction: Foam. Material Features: Breathable. Fill Material: Memory Foam. Seat Back Fill Material: Foam. Furniture Leg Material: Wood. Seat Fill Material: Foam. Product Care Instructions: Spot Clean with Damp Cloth. Has Removable Seat Cushion Cover: false. Material Type: Metal, Corduroy. Frame Material Type: Metal. Upholstery Fabric Type: Faux Fur. Is Customizable?: No. Seat Cushion Configuration: Multiple Cushion Seat. Item Firmness Description: Plush. Additional Features: Space Saving. Seating Capacity: 5.0. Weight Capacity Maximum: 1400 Pounds. Arm Width: 11.8 Inches. Minimum Required Door Width: 107.5 Inches. Size: 2 seater+Left Facing Chaise+ottoman. Item Dimensions D x W x H: 68.9\"D x 107.5\"W x 36.3\"H. Component Connector Assembly: Not Required. Warranty Type: Limited. Required Assembly: No. Upholstery Color: Black. Cushion Style: Knife Edge. Back Style: Cushion Back, Pillow Back. Arm Style: Straight. Shape: Semicircular. Style Name: Modern. Manufacturer: Settab. Item Height: 36.3 inches. ASIN: B0DMSPJ97J. Best Sellers Rank: #25,448 in Home & Kitchen (See Top 100 in Home & Kitchen) #12 in Sofas & Couches. Customer Reviews: 4.7    4.7 out of 5 stars         332 ratings          4.7 out of 5 stars. Included Throw Pillow Quantity: 2. Included Components: Ottoman. Orientation: Left Hand Facing. Indoor Outdoor Usage: Indoor. Seat Cushion Quantity: 3. Age Range Description: Adult. Room Type: Apartment, Bedroom, Living Room. Sofa Type: Sectional. Brand Name: Settab. Special Feature: Space Saving. Color: Black. Type: Sectional. Item Weight: 172.3 Pounds. Product Dimensions: 68.9\"D x 107.5\"W x 36.3\"H. Weight Limit: 1400 Pounds. Seat Height: 15.7 Inches. Seat Depth: 20.9 inches. Assembly Required: No. Brand: Settab.",
+    "recent_sales": "100+ bought in past month",
+    "color": "Black",
+    "material": "Breathable",
+    "manufacturer": "Settab",
+    "weight": "172.3 Pounds",
+    "dimensions": "68.9\"D x 107.5\"W x 36.3\"H"
   },
   "brand_store": {
-    "id": "D76AA372-DDE6-47BA-86A6-FCF387DB1A93",
-    "link": "https://www.amazon.com/stores/MAXYOYO/page/D76AA372-DDE6-47BA-86A6-FCF387DB1A93"
+    "id": "C220EE04-D5CB-4660-8550-933E74FA9BB3",
+    "link": "https://www.amazon.com/stores/Settab/page/C220EE04-D5CB-4660-8550-933E74FA9BB3"
   },
   "frequently_bought_together": {
     "total_price": {
       "symbol": "$",
-      "value": 522.96,
+      "value": 765.48,
       "currency": "USD",
-      "raw": "$522.96"
+      "raw": "$765.48"
     },
     "products": [
       {
-        "asin": "B0FLDP6QW9",
-        "title": "MAXYOYO 3 Seater Couch for Living Room, Boneless Couch with Tufted Cushion & Backrest, Upholstered Floor Sofa with Armrests, Sofa in A Box, No Assembly Required, Dark Grey",
-        "link": "https://www.amazon.com/dp/B0FLDP6QW9",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91dptjLNK9L._AC_UL116_SR116,116_.jpg",
+        "asin": "B0DMSPJ97J",
+        "title": "107.5\" Cloud Modular Sectional Sofa with 1 Ottoman,Modern Minimalist Upholstered Couches, Comfort U Shaped Sofa for Living Room,Deep Seat Corner Couch，No Assembly Required (Black,Left Facing Chaise)",
+        "link": "https://www.amazon.com/dp/B0DMSPJ97J",
+        "image": "https://images-na.ssl-images-amazon.com/images/I/81MRuDsR7hL._AC_UL116_SR116,116_.jpg",
         "price": {
           "symbol": "$",
-          "value": 559.99,
+          "value": 649,
           "currency": "USD",
-          "raw": "$559.99"
+          "raw": "$649.00"
         }
       },
       {
-        "asin": "B0FNN1B6BN",
-        "title": "OLIXIS Wood Lift Top Coffee Table with Hidden Compartment and Large Storage Shelf, Lift Tabletop Dining Center Table for Home Living Room Office, Black",
-        "link": "https://www.amazon.com/dp/B0FNN1B6BN",
-        "image": "https://m.media-amazon.com/images/S/al-na-9d5791cf-3faf/8cbf2e6f-371e-4094-9337-6bd695a4774f._CR364,0,1542,1279_AC_SX130_SY60_CB1169409_QL70_.jpg",
+        "asin": "B0BZWRSRWV",
+        "title": "Ring Battery Doorbell | Home or business security with Head-to-Toe Video, Live View with Two-Way Talk, and Motion Detection & Alerts (newest model), Satin Nickel",
+        "link": "https://www.amazon.com/dp/B0BZWRSRWV",
+        "image": "https://images-na.ssl-images-amazon.com/images/I/41TNy71EYwL._AC_UL116_SR116,116_.jpg",
         "price": {
           "symbol": "$",
-          "value": 559.99,
+          "value": 49.99,
           "currency": "USD",
-          "raw": "$559.99"
+          "raw": "$49.99"
         }
       },
       {
-        "asin": "B0FNN1B6BN",
-        "title": "FDW | 5-Piece Dining Table Set | Black | Glass Kitchen Table with 4 Upholstered Chairs and Faux Leather Cushions | Space-Saving and Modern Design | for Dining Room, Easy to Assemble",
-        "link": "https://www.amazon.com/dp/B0FNN1B6BN",
-        "image": "https://m.media-amazon.com/images/S/al-na-9d5791cf-3faf/8cbf2e6f-371e-4094-9337-6bd695a4774f._CR364,0,1542,1279_AC_SX130_SY60_CB1169409_QL70_.jpg",
+        "asin": "B09F9BL46G",
+        "title": "Yaheetech Wooden Coffee Table, Lift Top Coffee Table with Large Hidden Storage Shelf, Lift Tabletop Dining Tables for Living Room, Home Small Space, 38.6in, Black",
+        "link": "https://www.amazon.com/dp/B09F9BL46G",
+        "image": "https://images-na.ssl-images-amazon.com/images/I/71nmgOBm3wL._AC_UL116_SR116,116_.jpg",
         "price": {
           "symbol": "$",
-          "value": 559.99,
+          "value": 66.49,
           "currency": "USD",
-          "raw": "$559.99"
+          "raw": "$66.49"
         }
       }
     ]
+  },
+  "similar_to_consider": {
+    "asin": "B0DCJN33VK",
+    "link": "https://www.amazon.com/dp/B0DCJN33VK/ref=vp_d_cpf-substitute-widget-prsubs_pd?_encoding=UTF8&pf_rd_p=3b384b6f-3e1a-4384-bf9e-527aad01ce71&pf_rd_r=NHQ9P576XX1TFDJ3P35X&pd_rd_wg=phjM2&pd_rd_i=B0DCJN33VK&pd_rd_w=m2Wmm&content-id=amzn1.sym.3b384b6f-3e1a-4384-bf9e-527aad01ce71&pd_rd_r=2521e436-9131-481c-956c-6d6dcb69422c&psc=1",
+    "title": "Vamcheer Modular Sectional Sofa with Chaise, Modern L Shaped Cloud Couch with Deep Seat, Sectional Couches for Living Room, Bedroom, Office, No Assembly Required, Black",
+    "rating": 4,
+    "ratings_total": 97,
+    "image": "https://m.media-amazon.com/images/I/81BXnpCwtZL._SS100_.jpg",
+    "is_prime": true
   }
 }
