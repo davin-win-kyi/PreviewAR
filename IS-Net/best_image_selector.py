@@ -285,6 +285,35 @@ def choose_dimensions_with_gpt(
     }
 
 
+import io
+import requests
+from PIL import Image
+
+def save_best_image(image_url: str, out_path: str = "best_image.png") -> str:
+    """
+    Download image_url (any common format: jpg/png/webp/etc.) and save it as a PNG.
+    Returns the output path. Raises on failure.
+    """
+    if not image_url:
+        raise ValueError("image_url is empty.")
+
+    # Fetch bytes (follow redirects, set UA to avoid some 403s)
+    headers = {
+        "User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                       "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36")
+    }
+    r = requests.get(image_url, headers=headers, timeout=20)
+    r.raise_for_status()
+
+    # Decode and normalize to PNG
+    img = Image.open(io.BytesIO(r.content))
+    if img.mode not in ("RGB", "RGBA"):
+        # If it has an alpha channel, keep it; otherwise convert to RGB
+        img = img.convert("RGBA" if "A" in img.getbands() else "RGB")
+
+    img.save(out_path, format="PNG", optimize=True)
+    return out_path
+
 
 def main():
     parser = argparse.ArgumentParser(description="Select the best product image with minimal occlusions.")
@@ -362,6 +391,8 @@ def main():
     }
 
     print(json.dumps(result, indent=2, ensure_ascii=False))
+
+    save_best_image(best.get("image_url"), out_path="best_image.png")
 
 
 if __name__ == "__main__":
