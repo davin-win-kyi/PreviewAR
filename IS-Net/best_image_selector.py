@@ -262,15 +262,16 @@ def choose_dimensions_with_gpt(
           "- Prefer product/item over package/box dimensions.\n"
           "- Resolve synonyms: depth=breadth=width (unless clearly LxWxH triplet says otherwise); height is vertical.\n"
           "- Normalize to inches (1 in = 2.54 cm; 25.4 mm = 1 in).\n"
-          "- Return ONLY JSON per the schema—no extra text."
-          "- Depth is the same as width"
+          "- Return ONLY JSON per the schema—no extra text.\n"
+          "- Depth is the same as width.\n"
+          "Return a json in the format: {length: <length value>, width: <width value>, height: <height value>}"
     )
 
     print("USER: ", user)
 
     resp = client.responses.create(
         model=model,
-        input=[{"role": "system", "content": sys}, {"role": "user", "content": user}],
+        input=[{"role": "user", "content": user}],
     )
 
     data = json.loads(resp.output_text)
@@ -322,20 +323,20 @@ def main():
     parser.add_argument("--print-scrape", action="store_true", help="Print raw scraper payload to stderr")
     args = parser.parse_args()
 
-    # url = (
-    #     "https://www.amazon.com/Sectional-Minimalist-Upholstered-Couch%EF%BC%8CNo-Assembly/dp/B0DMSNCX14/ref=sr_1_1_sspa"
-    #     "?crid=3Q0OC9EF9BOT2"
-    #     "&dib=eyJ2IjoiMSJ9.Uwy_-hTxn36mxYatk6YVYoZzfr9ccOrbiBYTzPXlkhX20Xljw7XFV30e8JTA_UIVAcnSUfDH6SdliqACjdbtTxjItAW9S6wE3RCmOValBQUGnzlCgRtfgk4fa-PzKL8th62Cz6rAe5mruSurnxNcQ4vdjN_j0FIIIrxNqwaXdeeWa4zdYX7h608_MdeH7Xej50FqMcTQb_HicnZzBSAQVlt295PrnBXwNELEt5T-1MFOtNIs_4fB2vVpJb6X5ZdbREdGQxJexPzxwM9GK0X86-1R1IhzscV8fquOFk9dwMk.SxonPO9dTDRt6Xrhq1MNRk2KVFfS9rSsWmQ8r_nFdNE"
-    #     "&dib_tag=se"
-    #     "&keywords=couch"
-    #     "&qid=1762054233"
-    #     "&sprefix=couch%2Caps%2C195"
-    #     "&sr=8-1-spons"
-    #     "&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY"
-    #     "&th=1"
-    # )
+    url = (
+        "https://www.amazon.com/Sectional-Minimalist-Upholstered-Couch%EF%BC%8CNo-Assembly/dp/B0DMSNCX14/ref=sr_1_1_sspa"
+        "?crid=3Q0OC9EF9BOT2"
+        "&dib=eyJ2IjoiMSJ9.Uwy_-hTxn36mxYatk6YVYoZzfr9ccOrbiBYTzPXlkhX20Xljw7XFV30e8JTA_UIVAcnSUfDH6SdliqACjdbtTxjItAW9S6wE3RCmOValBQUGnzlCgRtfgk4fa-PzKL8th62Cz6rAe5mruSurnxNcQ4vdjN_j0FIIIrxNqwaXdeeWa4zdYX7h608_MdeH7Xej50FqMcTQb_HicnZzBSAQVlt295PrnBXwNELEt5T-1MFOtNIs_4fB2vVpJb6X5ZdbREdGQxJexPzxwM9GK0X86-1R1IhzscV8fquOFk9dwMk.SxonPO9dTDRt6Xrhq1MNRk2KVFfS9rSsWmQ8r_nFdNE"
+        "&dib_tag=se"
+        "&keywords=couch"
+        "&qid=1762054233"
+        "&sprefix=couch%2Caps%2C195"
+        "&sr=8-1-spons"
+        "&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY"
+        "&th=1"
+    )
 
-    url = "https://www.ikea.com/us/en/p/uppland-sofa-blekinge-white-s19384116/"
+    # url = "https://www.ikea.com/us/en/p/uppland-sofa-blekinge-white-s19384116/"
 
     # 1) URL info via your helper (already uses GPT-5 per your description)
     info = extract_with_gpt5(url)
