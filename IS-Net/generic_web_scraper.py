@@ -286,19 +286,25 @@ def scrape_and_analyze_url(
         raw_path = out_path / f"{output_prefix}.html"
         raw_path.write_text(html, encoding="utf-8")
 
-        # Filter to <img ...> and <td>/<span>...</td>/<span> blocks
+        is_ikea = ("ikea" in company)
+
+        if is_ikea:
+            tags_group = "li|span|td"   # include <li> for Home Depot
+        else:
+            tags_group = "span|td"      # exclude <li> otherwise
+
         pattern = re.compile(
-            r"""
+            rf"""
             # <img ...> (self-closing or not)
             <img\b[^>]*>
             |
-            # <li|span|td ...> ... </same-tag>
-            <(li|span|td)\b[^>]*>          # group 1 = tag name
+            # <{tags_group} ...> ... </same-tag>
+            <({tags_group})\b[^>]*>         # \1 = tag name
                 (?:
-                    (?!</?\1\b)            # don't let the same tag start/end here
-                    .                      # consume any char
+                    (?!</?\1\b)             # don't let the same tag start/end here
+                    .
                 )*?
-            </\1>                          # must close the same tag
+            </\1>
             """,
             re.IGNORECASE | re.DOTALL | re.VERBOSE,
         )
