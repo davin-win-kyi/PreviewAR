@@ -52,15 +52,16 @@ def get_rag_db():
     db = reload_chroma_db(embeddings)
     return db, embeddings
 
-def query_rag_for_dimensions(db, html_content=""):
+def query_rag_for_dimensions(db):
     """Query RAG system for product dimension selectors"""
-    query = 'Amazon product dimensions selectors CSS'
+    
+    query = 'Product dimensions selectors CSS'
     results = search_db(db, query, k=3)
     return results
 
-def query_rag_for_images(db, html_content=""):
+def query_rag_for_images(db):
     """Query RAG system for product image selectors"""
-    query = 'Amazon product images selectors CSS'
+    query = 'Product images selectors CSS'
     results = search_db(db, query, k=3)
     return results
 
