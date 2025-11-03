@@ -180,6 +180,7 @@ def rank_images_with_gpt5(
      - Measurement labels/overlays are OK.
      - Avoid images where other objects cover or obscure the main object.
      - If multiple ties, prefer front-facing, centered, good framing.
+     - A measurement/diagram-style image if available is preferred over other images.
 
     Returns:
      {
@@ -323,6 +324,7 @@ def main():
     parser.add_argument("--print-scrape", action="store_true", help="Print raw scraper payload to stderr")
     args = parser.parse_args()
 
+    # Amazon
     url = (
         "https://www.amazon.com/Sectional-Minimalist-Upholstered-Couch%EF%BC%8CNo-Assembly/dp/B0DMSNCX14/ref=sr_1_1_sspa"
         "?crid=3Q0OC9EF9BOT2"
@@ -336,7 +338,26 @@ def main():
         "&th=1"
     )
 
+    #Ikea
     # url = "https://www.ikea.com/us/en/p/uppland-sofa-blekinge-white-s19384116/"
+
+    # Target
+    # url = (
+    #    "https://www.target.com/p/hyleory-112-in-w-4-piece-modern-corduroy-fabric-"
+    #    "sectional-sofa-with-ottoman/-/A-92703198?preselect=1002282123#lnk=sametab"
+    # )
+
+    # Ebay
+    # url = (
+    #     "https://www.ebay.com/itm/286902766691?itmmeta=01K93Q62PKF8X7DHJKBFGP7SZE&h"
+    #     "ash=item42ccbccc63:g:1-wAAeSw2Xho20DO&itmprp=enc%3AAQAKAAAA4NHOg0D50eDiCdi"
+    #     "%2FfP0r02u0KKb67hWy%2BDkIlf97%2BERiD2%2BTwOXn1rGSKdwCoDzJO9Axt2hYA%2BL6gAo"
+    #     "lxrirE%2BwaXe%2BMQaU%2BKIImK7FohURRnwjsqlI%2FIRfXAFCFuzwZS%2BrwMwiGu5koJr%"
+    #     "2FG6E8Ml%2FbxcymkJf2zMbNXnntdI01TJISAC%2FoHRHOlzpfglClSQMjIjvTI3BIp84MOJtC"
+    #     "T5px4fH3sABinwoz7EVoMLwtuoVEBacnRwGR9jJnyFJS7F50SOfrVdA5%2BNZTv2RHPlDG2YOO"
+    #     "dlTL%2Bb3JSI7xXX7cp%7Ctkp%3ABk9SR7irmPfIZg"
+    # )
+
 
     # 1) URL info via your helper (already uses GPT-5 per your description)
     info = extract_with_gpt5(url)

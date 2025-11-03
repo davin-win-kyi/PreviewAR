@@ -11,6 +11,142 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
+# PRESS and Hold behavior for capatcha's that will pop up for Wayfair:
+import time, random
+from typing import Optional, Tuple
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException, WebDriverException, JavascriptException
+
+_PRESS_HOLD_XPATH = (
+    "//*[@role='button' and contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'press')"
+    " and contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'hold')]"
+    " | /*//*[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'press')"
+    " and contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'hold')]"
+)
+
+def _find_in_iframes(driver, by, value, timeout: float = 6.0):
+    """Return (element, frame_index or None)."""
+    wait = WebDriverWait(driver, timeout)
+    # main doc
+    try:
+        el = wait.until(EC.presence_of_element_located((by, value)))
+        return el, None
+    except TimeoutException:
+        pass
+    # iframes
+    frames = driver.find_elements(By.CSS_SELECTOR, "iframe, frame")
+    for i, fr in enumerate(frames):
+        try:
+            driver.switch_to.frame(fr)
+            try:
+                el = wait.until(EC.presence_of_element_located((by, value)))
+                return el, i
+            except TimeoutException:
+                pass
+        finally:
+            driver.switch_to.default_content()
+    return None, None
+
+def _mouse_press_and_hold(driver, el, duration: float):
+    actions = ActionChains(driver)
+    actions.move_to_element(el).perform()
+    time.sleep(0.12)
+    actions.click_and_hold(el).perform()
+    t_end = time.time() + duration
+    while time.time() < t_end:
+        ActionChains(driver).move_by_offset(random.randint(-2,2), random.randint(-2,2)).perform()
+        time.sleep(0.12 + random.random()*0.15)
+    ActionChains(driver).release(el).perform()
+
+def _js_pointer_press_and_hold(driver, el, duration: float):
+    js = r"""
+const el = arguments[0];
+const holdMs = Math.max(0, Math.floor(arguments[1]*1000));
+el.scrollIntoView({block:'center', inline:'center'});
+function fire(type, opts={}) {
+  const r = el.getBoundingClientRect();
+  el.dispatchEvent(new PointerEvent(type, Object.assign({
+    bubbles:true, cancelable:true, composed:true,
+    pointerId:1, pointerType:'mouse', isPrimary:true, buttons:1,
+    clientX:(r.left+r.right)/2, clientY:(r.top+r.bottom)/2
+  }, opts)));
+}
+function mouse(type){ el.dispatchEvent(new MouseEvent(type,{bubbles:true,cancelable:true,buttons:1})); }
+function touch(type){
+  try{
+    const r=el.getBoundingClientRect();
+    const t=new Touch({identifier:1,target:el,clientX:(r.left+r.right)/2,clientY:(r.top+r.bottom)/2});
+    el.dispatchEvent(new TouchEvent(type,{bubbles:true,cancelable:true,touches:[t],targetTouches:[t],changedTouches:[t]}));
+  }catch(_){}
+}
+fire('pointerover'); fire('pointerenter'); fire('pointerdown');
+mouse('mouseover'); mouse('mouseenter'); mouse('mousedown'); touch('touchstart');
+return new Promise(res=>{ setTimeout(()=>{ fire('pointerup',{buttons:0}); mouse('mouseup'); mouse('click'); touch('touchend'); res(true); }, holdMs); });
+"""
+    driver.execute_script(js, el, duration)
+    time.sleep(duration + 0.25)
+
+def press_and_hold(
+    driver,
+    *,
+    duration: float = 4.0,
+    timeout: float = 8.0,
+    locator: Optional[Tuple[str, str]] = None,
+):
+    """
+    Press & hold a button-like element.
+    Args:
+      driver    : Selenium WebDriver
+      duration  : seconds to hold
+      timeout   : seconds to search for element
+      locator   : optional (By, value). If not given, finds element whose text contains 'press' and 'hold'
+    Returns:
+      True if element found and hold executed; False otherwise.
+    """
+    by, val = locator if locator else (By.XPATH, _PRESS_HOLD_XPATH)
+
+    # Find element (main or iframes)
+    el, frame_idx = _find_in_iframes(driver, by, val, timeout=timeout)
+    if not el:
+        return False
+
+    # Switch into the frame if needed
+    if frame_idx is not None:
+        frames = driver.find_elements(By.CSS_SELECTOR, "iframe, frame")
+        try:
+            driver.switch_to.frame(frames[frame_idx])
+        except Exception:
+            driver.switch_to.default_content()
+
+    # Ensure interactable and in view
+    try:
+        WebDriverWait(driver, 5).until(EC.element_to_be_clickable(el))
+    except TimeoutException:
+        pass
+    driver.execute_script("arguments[0].scrollIntoView({block:'center', inline:'center'});", el)
+    time.sleep(0.15)
+
+    # Try native, then JS fallback
+    try:
+        _mouse_press_and_hold(driver, el, duration)
+    except WebDriverException:
+        try:
+            _js_pointer_press_and_hold(driver, el, duration)
+        except JavascriptException:
+            # bail
+            driver.switch_to.default_content()
+            return False
+
+    driver.switch_to.default_content()
+    return True
+
+##############################################################################
+
+
 """
     Handle Amazon's bot detection/safeguard buttons that appear before accessing the product page.
     
@@ -279,6 +415,7 @@ def scrape_and_analyze_url(
                 # Helper not provided—continue silently
                 pass
 
+
         time.sleep(2)  # small buffer for dynamic content
 
         # --- Retrieve HTML ---
@@ -349,6 +486,8 @@ def main(url: Optional[str] = None, company: Optional[str] = None) -> None:
 
 if __name__ == "__main__":
     # Allow passing the URL on the command line:
+
+    # Amazon
     # python script.py "https://example.com/product"
     # url = (
     #     "https://www.amazon.com/Sectional-Minimalist-Upholstered-Couch%EF%BC%8CNo-Assembly/dp/B0DMSNCX14/ref=sr_1_1_sspa"
@@ -363,5 +502,13 @@ if __name__ == "__main__":
     #     "&th=1"
     # )
 
-    url= "https://www.ikea.com/us/en/p/uppland-sofa-blekinge-white-s19384116/"
+    # Ikea
+    # url= "https://www.ikea.com/us/en/p/uppland-sofa-blekinge-white-s19384116/"
+
+    url = (
+       "https://www.wayfair.com/furniture/pdp/latitude-run-cenie-modern-upholstered"
+       "-arc-shaped-3d-knit-fabric-sofa-no-assembly-required3-seat-w115334476.html?"
+       "piid=224002162"
+    )
+
     main(url, "Ikea")
