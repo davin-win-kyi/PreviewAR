@@ -143,18 +143,18 @@ def download_image(
 
 
 
-def dis(json_path):
+def dis():
 
     # before calling the rest, call the method that 
     # will save the json for a certain url
 
-    dataset_path="../demo_datasets/your_dataset/sofa2.jpg"  #Your dataset path
+    dataset_path="../IS-Net/best_image.png"  #Your dataset path
     model_path="../saved_models/IS-Net/isnet-general-use.pth"  # the model path
     result_path="../demo_datasets/your_dataset_result/test"  #The folder path that you want to save the results
     
-    url = get_best_image(json_path)
+    # url = get_best_image(json_path)
     
-    dataset_path = download_image(url, "best_image.png")
+    # dataset_path = download_image(url, "best_image.png")
 
     
     if not os.path.exists(result_path):
@@ -202,7 +202,7 @@ def dis(json_path):
             final_image = (im * alpha_mask + white_bg * (1 - alpha_mask)).astype(np.uint8)
 
             im_name, _ = os.path.splitext(os.path.basename(im_path))
-            io.imsave(os.path.join(result_path,im_name+".png"), final_image)
+            io.imsave("test.png", final_image)
 
 if __name__ == "__main__":
     dis()

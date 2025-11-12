@@ -5,6 +5,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from best_image_selector import get_best_image_url
+
 from Inference import dis
 
 from company_agent import process_url
@@ -40,10 +42,28 @@ def newest_glb_from_cache(cache_dir: str, started_after: float):
 def main():
 
     # handling the amazon case right now
-    out_path = process_url("https://www.amazon.com/Sectional-Minimalist-Upholstered-Couch%EF%BC%8CNo-Assembly/dp/B0DMSPJ97J/ref=sxin_16_pa_sp_search_thematic_sspa?content-id=amzn1.sym.a1bc2dac-8d07-44d1-9477-59bc11451909%3Aamzn1.sym.a1bc2dac-8d07-44d1-9477-59bc11451909&crid=1X7V4GO2K8PE9&cv_ct_cx=couch&keywords=couch&pd_rd_i=B0DMSPJ97J&pd_rd_r=00c418e9-74a0-40d2-882c-295d127e6cef&pd_rd_w=e9VtT&pd_rd_wg=lfOx6&pf_rd_p=a1bc2dac-8d07-44d1-9477-59bc11451909&pf_rd_r=6VAC3N6XWY0GH5P85MSB&qid=1761351451&s=home-garden&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=couch%2Cgarden%2C391&sr=1-2-9428117c-b940-4daa-97e9-ad363ada7940-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9zZWFyY2hfdGhlbWF0aWM&th=1", "test.json")
+    # out_path = process_url("https://www.amazon.com/Sectional-Minimalist-Upholstered-Couch%EF%BC%8CNo-Assembly/dp/B0DMSPJ97J/ref=sxin_16_pa_sp_search_thematic_sspa?content-id=amzn1.sym.a1bc2dac-8d07-44d1-9477-59bc11451909%3Aamzn1.sym.a1bc2dac-8d07-44d1-9477-59bc11451909&crid=1X7V4GO2K8PE9&cv_ct_cx=couch&keywords=couch&pd_rd_i=B0DMSPJ97J&pd_rd_r=00c418e9-74a0-40d2-882c-295d127e6cef&pd_rd_w=e9VtT&pd_rd_wg=lfOx6&pf_rd_p=a1bc2dac-8d07-44d1-9477-59bc11451909&pf_rd_r=6VAC3N6XWY0GH5P85MSB&qid=1761351451&s=home-garden&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=couch%2Cgarden%2C391&sr=1-2-9428117c-b940-4daa-97e9-ad363ada7940-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9zZWFyY2hfdGhlbWF0aWM&th=1", "test.json")
+    url = (
+        # "https://www.amazon.com/Sectional-Minimalist-Upholstered-Couch%EF%BC%8CNo-Assembly/dp/B0DMSNCX14/ref=sr_1_1_sspa"
+        # "?crid=3Q0OC9EF9BOT2"
+        # "&dib=eyJ2IjoiMSJ9.Uwy_-hTxn36mxYatk6YVYoZzfr9ccOrbiBYTzPXlkhX20Xljw7XFV30e8JTA_UIVAcnSUfDH6SdliqACjdbtTxjItAW9S6wE3RCmOValBQUGnzlCgRtfgk4fa-PzKL8th62Cz6rAe5mruSurnxNcQ4vdjN_j0FIIIrxNqwaXdeeWa4zdYX7h608_MdeH7Xej50FqMcTQb_HicnZzBSAQVlt295PrnBXwNELEt5T-1MFOtNIs_4fB2vVpJb6X5ZdbREdGQxJexPzxwM9GK0X86-1R1IhzscV8fquOFk9dwMk.SxonPO9dTDRt6Xrhq1MNRk2KVFfS9rSsWmQ8r_nFdNE"
+        # "&dib_tag=se"
+        # "&keywords=couch"
+        # "&qid=1762054233"
+        # "&sprefix=couch%2Caps%2C195"
+        # "&sr=8-1-spons"
+        # "&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY"
+        # "&th=1"
+
+        """
+        https://www.amazon.com/MODNEST-Modular-Sectional-Boneless-Assembly/dp/B0FCYC86TT/ref=sr_1_5_sspa?crid=3RIV4C6CTWYQA&dib=eyJ2IjoiMSJ9.mCR5SjVr3IuoofQI97UxVmePO3nKmQbrqGkH6q7BhCWvXZfA2gaJDgyWsF100Jp3IznRSrEL8WKrwF2Xtlr-Q6YdVwugk_h-vhluo-EvhxJBqShb2gctTmjV71AXRyHOoPE6xC5K1iS8ITO3gdrhSf93HanYw7yk5iuIDU0gQFvfQLiPHo05ZX5PuYYk5As943eAeCxhe_d7i07UPtixVaCT_4yDty6lWukpMHvQmtssdgjG_zKvPqz8uqzZ5oAjIljfU3T1fj2lJKgKnqjlWxjA504G0RVwfRlQuUKr5bM.bAdATDJIW3OxMs6M16JiHRG9zAvYg7_B-SoRvPV4i5s&dib_tag=se&keywords=couch&qid=1762565138&sprefix=cou%2Caps%2C264&sr=8-5-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1
+        """
+    )
+        
+    get_best_image_url(url)
 
     # now process the json with output information
-    dis(out_path)
+    dis()
     # dis("test.json")
 
 
@@ -51,7 +71,7 @@ def main():
     # setting arguments for later use
     ap = argparse.ArgumentParser(description="Drive Hunyuan3D Gradio with Selenium and fetch textured mesh.")
     ap.add_argument("--url", default="http://localhost:1080//", help="Gradio URL")
-    ap.add_argument("--image", default="best_image.png", help="Path to input image")
+    ap.add_argument("--image", default="test.png", help="Path to input image")
     ap.add_argument("--cache-dir", default=r"C:\Users\davin\OneDrive\Documents\HY3D2\Hunyuan3D2_WinPortable_cu126\Hunyuan3D2_WinPortable\Hunyuan3D-2-vanilla\gradio_cache",
                     help="Path to Hunyuan3D gradio_cache directory")
     ap.add_argument("--timeout", type=int, default=120, help="Max seconds to wait for textured mesh")

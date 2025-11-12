@@ -317,7 +317,7 @@ def save_best_image(image_url: str, out_path: str = "best_image.png") -> str:
     return out_path
 
 
-def main():
+def get_best_image_url(url):
     parser = argparse.ArgumentParser(description="Select the best product image with minimal occlusions.")
     # parser.add_argument("url", help="Product URL to analyze")
     parser.add_argument("--max-images", type=int, default=30, help="Cap the number of candidate image URLs")
@@ -325,18 +325,7 @@ def main():
     args = parser.parse_args()
 
     # Amazon
-    url = (
-        "https://www.amazon.com/Sectional-Minimalist-Upholstered-Couch%EF%BC%8CNo-Assembly/dp/B0DMSNCX14/ref=sr_1_1_sspa"
-        "?crid=3Q0OC9EF9BOT2"
-        "&dib=eyJ2IjoiMSJ9.Uwy_-hTxn36mxYatk6YVYoZzfr9ccOrbiBYTzPXlkhX20Xljw7XFV30e8JTA_UIVAcnSUfDH6SdliqACjdbtTxjItAW9S6wE3RCmOValBQUGnzlCgRtfgk4fa-PzKL8th62Cz6rAe5mruSurnxNcQ4vdjN_j0FIIIrxNqwaXdeeWa4zdYX7h608_MdeH7Xej50FqMcTQb_HicnZzBSAQVlt295PrnBXwNELEt5T-1MFOtNIs_4fB2vVpJb6X5ZdbREdGQxJexPzxwM9GK0X86-1R1IhzscV8fquOFk9dwMk.SxonPO9dTDRt6Xrhq1MNRk2KVFfS9rSsWmQ8r_nFdNE"
-        "&dib_tag=se"
-        "&keywords=couch"
-        "&qid=1762054233"
-        "&sprefix=couch%2Caps%2C195"
-        "&sr=8-1-spons"
-        "&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY"
-        "&th=1"
-    )
+
 
     #Ikea
     # url = "https://www.ikea.com/us/en/p/uppland-sofa-blekinge-white-s19384116/"
@@ -414,8 +403,8 @@ def main():
 
     print(json.dumps(result, indent=2, ensure_ascii=False))
 
-    save_best_image(best.get("image_url"), out_path="best_image.png")
+    save_best_image(best.get("image_url"), out_path="C:\\Users\\davin\\OneDrive\\Documents\\PreviewAR\\IS-Net\\best_image.png")
 
 
 if __name__ == "__main__":
-    main()
+    get_best_image_url()
