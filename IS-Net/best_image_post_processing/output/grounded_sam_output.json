@@ -11,7 +11,7 @@
       "step_index": 0,
       "raw_item": {
         "type": "FileOutput",
-        "url": "https://replicate.delivery/xezq/VF3oAIwgehRBfU8f71iotKzOTQSeXXLFjVCnDmLwe3bYskItC/annotated_picture_mask.jpg"
+        "url": "https://replicate.delivery/xezq/7hkVlNfTImzmQqmF10RxZoFXnfE373bWzXsUlzCzK0yacVpVA/annotated_picture_mask.jpg"
       },
       "extracted_urls_count": 1,
       "saved_files": [
@@ -22,7 +22,7 @@
       "step_index": 1,
       "raw_item": {
         "type": "FileOutput",
-        "url": "https://replicate.delivery/xezq/YXPfDSHcqV2OO64wOOjZGrpIblWOZ4jdEd6m53bI7dzxSi0KA/neg_annotated_picture_mask.jpg"
+        "url": "https://replicate.delivery/xezq/wo0fqzJaVLXpBS344X695U0ffS5flClkymuFmgdeWvsWjrKtC/neg_annotated_picture_mask.jpg"
       },
       "extracted_urls_count": 1,
       "saved_files": [
@@ -33,7 +33,7 @@
       "step_index": 2,
       "raw_item": {
         "type": "FileOutput",
-        "url": "https://replicate.delivery/xezq/4lbdOguA2TZjMlljHv1MKJVUMpSVbu5GEUz97UmfKffHLJSrA/mask.jpg"
+        "url": "https://replicate.delivery/xezq/9TvOPJfIZUwpa6TftHY37sXStXbfge5Q0vXxYImy7I1rxVlWB/mask.jpg"
       },
       "extracted_urls_count": 1,
       "saved_files": [
@@ -44,7 +44,7 @@
       "step_index": 3,
       "raw_item": {
         "type": "FileOutput",
-        "url": "https://replicate.delivery/xezq/L6iMV8er6YX8R62s49t8FqzCKMvdX7gG7SbbtovosAfklEpVA/inverted_mask.jpg"
+        "url": "https://replicate.delivery/xezq/0NQ66e3VfeLPzI2RH42I5TBmyMGHroZWWXJCgeuCrBdoxVlWB/inverted_mask.jpg"
       },
       "extracted_urls_count": 1,
       "saved_files": [

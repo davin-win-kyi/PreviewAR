@@ -3,11 +3,6 @@ import cv2
 import numpy as np
 from pathlib import Path
 
-# --- Hardcoded inputs ---
-original_image = "/Users/davinwinkyi/PreviewAR-V2/PreviewAR/best_image_post_processing/crops/previewar_test#1_couch_001.jpg"
-mask_image     = "/Users/davinwinkyi/PreviewAR-V2/PreviewAR/best_image_post_processing/output/grounded_sam_002_00.png"
-out_image      = "/Users/davinwinkyi/PreviewAR-V2/PreviewAR/best_image_post_processing/output/kept_with_white_bg.png"
-
 WHITE_THRESH = 250  # 0..255, treat pixels >= this on all channels as white
 USE_ALPHA_IF_PRESENT = True  # if mask has an alpha channel, use it directly
 
@@ -40,7 +35,11 @@ def build_keep_mask(mask_img: np.ndarray) -> np.ndarray:
 
     # otherwise, use "white means keep" heuristic on 3-channel
     m3 = ensure_3ch(mask_img)
-    keep = (m3[:, :, 0] >= WHITE_THRESH) & (m3[:, :, 1] >= WHITE_THRESH) & (m3[:, :, 2] >= WHITE_THRESH)
+    keep = (
+        (m3[:, :, 0] >= WHITE_THRESH)
+        & (m3[:, :, 1] >= WHITE_THRESH)
+        & (m3[:, :, 2] >= WHITE_THRESH)
+    )
     return keep
 
 
@@ -53,15 +52,19 @@ def apply_white_background(src_bgr: np.ndarray, keep_mask: np.ndarray) -> np.nda
     return out
 
 
-def main():
+def main(original_image: str, mask_image: str, out_image: str):
     # Load images
-    src = load_image(original_image, cv2.IMREAD_COLOR)  # BGR
-    mask = load_image(mask_image, cv2.IMREAD_UNCHANGED)  # could be 1/3/4ch
+    src = load_image(original_image, cv2.IMREAD_COLOR)      # BGR
+    mask = load_image(mask_image, cv2.IMREAD_UNCHANGED)     # could be 1/3/4ch
 
     # Resize mask to source size if needed
     h, w = src.shape[:2]
     if mask.shape[0] != h or mask.shape[1] != w:
-        interp = cv2.INTER_NEAREST if mask.ndim == 2 or mask.shape[2] in (1, 4) else cv2.INTER_LINEAR
+        if mask.ndim == 2:
+            interp = cv2.INTER_NEAREST
+        else:
+            ch = mask.shape[2]
+            interp = cv2.INTER_NEAREST if ch in (1, 4) else cv2.INTER_LINEAR
         mask = cv2.resize(mask, (w, h), interpolation=interp)
 
     # Build keep mask (alpha preferred; otherwise white-threshold)
@@ -77,4 +80,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # --- Set your paths here, then call main() ---
+    original_image = "/Users/davinwinkyi/PreviewAR-V2/PreviewAR/best_image_post_processing/crops/previewar_test#1_couch_001.jpg"
+    mask_image     = "/Users/davinwinkyi/PreviewAR-V2/PreviewAR/best_image_post_processing/output/grounded_sam_002_00.png"
+    out_image      = "/Users/davinwinkyi/PreviewAR-V2/PreviewAR/best_image_post_processing/output/kept_with_white_bg.png"
+
+    main(original_image, mask_image, out_image)
+

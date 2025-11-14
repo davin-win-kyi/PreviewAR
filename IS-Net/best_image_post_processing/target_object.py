@@ -5,7 +5,7 @@ import re
 import json
 import difflib
 from pathlib import Path
-from typing import List, Dict, Optional, Tuple
+from typing import List, Dict, Optional, Tuple, Any
 
 import cv2
 from openai import OpenAI
@@ -18,7 +18,6 @@ import object_detection_segmented as ods
 
 import extract_url_info as eui 
 
-import os
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -55,7 +54,7 @@ def _bbox_iou_xyxy(b1: List[float], b2: List[float]) -> float:
 
     # intersection
     xi1 = max(x1a, x1b)
-    yi1 = max(y1a, y1b)
+    yi1 = max(yi1, y1b) if (yi1 := max(y1a, y1b)) else max(y1a, y1b)  # just to avoid lint complaints
     xi2 = min(x2a, x2b)
     yi2 = min(y2a, y2b)
 
@@ -277,37 +276,6 @@ class ProductCropper:
     ) -> Dict:
         """
         Merge a bbox-only JSON and a seg JSON for a given class alias.
-
-        - bbox_json_path: e.g. "previewar_test#1_yolo11_o365.json"
-          (from object_detection.py; only bounding_box + confidence)
-
-        - seg_json_path: e.g. "previewar_test#1_yolo11_o365_seg.json"
-          (from object_detection_segmented.py; includes mask_polygon + its own bounding_box)
-
-        - alias: the class name / alias to filter on (e.g. "couch").
-
-        Strategy:
-          1) Load both JSONs.
-          2) Filter objects where object_name == alias (case-insensitive).
-          3) For each bbox-only detection, find the seg detection with the
-             same alias and largest IoU between bounding boxes.
-          4) If IoU >= iou_thresh, attach that seg object's mask_polygon
-             to the bbox object.
-          5) Return a new dict:
-             {
-                 "alias": alias,
-                 "objects": [
-                    {
-                      "object_name": str,
-                      "bounding_box": [x,y,w,h],
-                      "mask_polygon": [...points...] or null,
-                      "bbox_confidence": float or null,
-                      "mask_confidence": float or null,
-                      "iou_match": float
-                    },
-                    ...
-                 ]
-             }
         """
         alias_l = alias.lower()
 
@@ -381,7 +349,92 @@ class ProductCropper:
         return out
 
 
-# ---------- example usage ----------
+# ---------- new callable "main" pipeline function ----------
+
+def run_product_cropping_pipeline(
+    image_path: str,
+    product_url: str,
+    out_dir: str = "crops",
+    conf: float = 0.25,
+    iou: float = 0.45,
+    use_gpt: bool = True,
+) -> Dict[str, Any]:
+    """
+    High-level pipeline you can call from other code.
+
+    It:
+      1) Runs ProductCropper.run (bbox-only detection + cropping)
+      2) Ensures bbox + seg JSONs exist
+      3) Merges bbox + seg JSONs for the chosen alias
+      4) Returns a dict with all relevant outputs
+    """
+    pc = ProductCropper(gpt_model="gpt-5")
+
+    # 1) main pipeline (bbox-only detection via object_detection.py)
+    summary = pc.run(
+        image_path=image_path,
+        product_url=product_url,
+        out_dir=out_dir,
+        conf=conf,
+        iou=iou,
+        use_gpt=use_gpt,
+    )
+
+    print(json.dumps({
+        "company_name": summary["profile"]["company_name"],
+        "product_aliases": summary["profile"]["product_name"],
+        "target_class": summary["target_class"],
+        "num_crops_saved": summary["num_crops_saved"],
+        "out_dir": summary["out_dir"]
+    }, indent=2))
+
+    # 2) bbox-only JSON
+    stem = Path(image_path).stem
+    bbox_json = f"{stem}_yolo11_o365.json"
+    if not Path(bbox_json).exists():
+        det = od.get_objects_json(image_path, conf=conf, iou=iou)
+        with open(bbox_json, "w") as f:
+            json.dump(det, f, indent=2)
+        print(f"[bbox] Saved → {bbox_json}")
+
+    # 3) segmentation JSON + annotated mask image
+    seg_json = f"{stem}_yolo11_o365_seg.json"
+    seg_img  = f"{stem}_yolo11_o365_seg.jpg"
+    if not Path(seg_json).exists():
+        seg_res = ods.get_objects_json(image_path, conf=conf, iou=iou)
+        with open(seg_json, "w") as f:
+            json.dump(seg_res, f, indent=2)
+        print(f"[seg] Saved JSON → {seg_json}")
+
+        seg_out_img = ods.draw_boxes_and_masks_pil(image_path, seg_res, seg_img)
+        print(f"[seg] Saved annotated image → {seg_out_img}")
+    else:
+        seg_out_img = seg_img
+
+    # 4) merge bbox + seg JSON for the chosen target class alias
+    alias = summary["target_class"]
+    merged_out = f"{stem}_yolo11_o365_merged_alias.json"
+
+    merged = pc.build_alias_bbox_mask_json(
+        alias=alias,
+        bbox_json_path=bbox_json,
+        seg_json_path=seg_json,
+        out_path=merged_out,
+        iou_thresh=0.3,
+    )
+
+    return {
+        "summary": summary,
+        "bbox_json": bbox_json,
+        "seg_json": seg_json,
+        "seg_annotated_image": seg_out_img,
+        "merged_json": merged_out,
+        "merged_data": merged,
+    }
+
+
+# ---------- example usage via __main__ ----------
+
 if __name__ == "__main__":
     # Example values—replace with your own image + product URL
     IMAGE_PATH = "previewar_test#1.jpg"
@@ -395,55 +448,25 @@ if __name__ == "__main__":
     )
     OUT_DIR = "crops"
 
-    pc = ProductCropper(gpt_model="gpt-5")
-
-    # 1) Run main pipeline (bbox-only detection via object_detection.py)
-    summary = pc.run(
+    # Call the new main pipeline function
+    results = run_product_cropping_pipeline(
         image_path=IMAGE_PATH,
         product_url=PRODUCT_URL,
         out_dir=OUT_DIR,
         conf=0.25,
         iou=0.45,
-        use_gpt=True,       # set False to avoid GPT and use fuzzy-only mapping
+        use_gpt=True,
     )
 
+    # Optional: pretty-print top-level results
     print(json.dumps({
-        "company_name": summary["profile"]["company_name"],
-        "product_aliases": summary["profile"]["product_name"],
-        "target_class": summary["target_class"],
-        "num_crops_saved": summary["num_crops_saved"],
-        "out_dir": summary["out_dir"]
+        "company_name": results["summary"]["profile"]["company_name"],
+        "product_aliases": results["summary"]["profile"]["product_name"],
+        "target_class": results["summary"]["target_class"],
+        "num_crops_saved": results["summary"]["num_crops_saved"],
+        "out_dir": results["summary"]["out_dir"],
+        "bbox_json": results["bbox_json"],
+        "seg_json": results["seg_json"],
+        "merged_json": results["merged_json"],
     }, indent=2))
 
-    # 2) Also generate bbox-only JSON & optional annotated image (if not already done)
-    bbox_json = "previewar_test#1_yolo11_o365.json"
-    if not Path(bbox_json).exists():
-        det = od.get_objects_json(IMAGE_PATH, conf=0.25, iou=0.45)
-        with open(bbox_json, "w") as f:
-            json.dump(det, f, indent=2)
-        print(f"[bbox] Saved → {bbox_json}")
-        # If you have draw_boxes_pil in object_detection.py you could call it here.
-
-    # 3) Generate segmentation JSON + annotated mask image using object_detection_segmented.py
-    seg_json = "previewar_test#1_yolo11_o365_seg.json"
-    seg_img  = "previewar_test#1_yolo11_o365_seg.jpg"
-    if not Path(seg_json).exists():
-        seg_res = ods.get_objects_json(IMAGE_PATH, conf=0.25, iou=0.45)
-        with open(seg_json, "w") as f:
-            json.dump(seg_res, f, indent=2)
-        print(f"[seg] Saved JSON → {seg_json}")
-
-        seg_out_img = ods.draw_boxes_and_masks_pil(IMAGE_PATH, seg_res, seg_img)
-        print(f"[seg] Saved annotated image → {seg_out_img}")
-
-    # 4) Merge bbox + seg JSON for the chosen target class alias
-    alias = summary["target_class"]   # e.g. "couch" or whatever GPT picked
-    merged_out = "previewar_test#1_yolo11_o365_merged_alias.json"
-
-    pc.build_alias_bbox_mask_json(
-        alias=alias,
-        bbox_json_path=bbox_json,
-        seg_json_path=seg_json,
-        out_path=merged_out,
-        iou_thresh=0.3,
-    )

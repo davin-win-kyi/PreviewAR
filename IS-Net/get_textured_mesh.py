@@ -15,6 +15,11 @@ from blender_scaling import get_dimensions_via_gpt, scale_glb_in_blender
 
 import json
 
+
+from best_image_post_processing import image_post_processing
+
+
+
 def newest_glb_from_cache(cache_dir: str, started_after: float):
     """
     Return path to newest textured_mesh.glb created
@@ -66,6 +71,19 @@ def main():
     dis()
     # dis("test.json")
 
+    # input the image as well as the test.png file name into the method call image_post_processing.py
+    # and call the method 
+    image_to_process = "test.png"
+
+    # here is the call to the post_processing_pipeline
+    """
+    TODO: put the variables you had from the main in image_post_processing.py here
+    and also put in the right parameters into image_post_processing
+    """
+    image_post_processing()
+    
+
+    post_processed_image = "output/post_processing_image.png"
 
 
     # setting arguments for later use
