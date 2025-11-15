@@ -1,4 +1,5 @@
 # Nessecary Imports
+from pathlib import Path
 import object_detection
 import target_object
 import mask_generation
@@ -11,7 +12,19 @@ import white_background
 
 
 # Pipeline method
-def image_post_processing():
+def image_post_processing(image_path, 
+                          object_detection_json_name, 
+                          object_detection_debug, 
+                          product_url, 
+                          target_object_json, 
+                          output_directory, 
+                          grounded_sam_segmented_image, 
+                          yolo_masks_directory, 
+                          image_padding, 
+                          grounded_sam_output_directory, 
+                          nana_banana_generation_mask, 
+                          nano_banana_image_path):
+    
     """
     Overall pipeline structure: 
     1. object_detection.py
@@ -44,33 +57,62 @@ def image_post_processing():
           be white
     
     """
-    # TODO:
-
-    # Object detection call: object_detection.py
-
 
     # Target object call: Target_object.py
-
+    target_object.run_product_cropping_pipeline(
+        image_path=image_path,
+        product_url=product_url,
+        out_dir=output_directory,
+    )
 
     # Grounded SAM call: mask_generation.py
-
+    runner = mask_generation.MaskGenerationRunner()
+    runner.run(
+        image_path = image_path,
+        product_url = product_url,
+    )
 
     # Masked image call: mask_image.py
     """
     Get the third image from the output folder
     """
+    first_file = next(Path("crops").glob("*"), None)
+    second_file = sorted(p for p in Path("output").iterdir() if p.is_file())[2]
+    third_file = "output/kept_with_white_bg.png"
 
+    mask_image.main(
+        original_image = first_file,
+        second_file = second_file,
+        out_image=third_file,
+    )
 
     # Yolo Mask call: get_object_img_masks.py
-
+    get_object_img_masks.crop_white_masks_from_merged(
+        image_path=image_path,
+        merged_json_path=target_object_json,
+        out_dir=yolo_masks_directory,
+        pad=image_padding,
+    )
 
     # Combined Mask call: combine_two_mask.py
-
+    first_image_mask = next(Path("object_white_mask").glob("*"), None)
+    output_path= "mask_non_overlapping.png"
+    combine_two_mask.xor_two_masks(
+        mask_a_path=first_image_mask,
+        mask_b_path=second_file,
+        out_path=output_path,
+    )
 
     # Nano banana call: Nano_banana.py
+    nano_banana.run_full_inpaint_with_manual_mask(
+        original_image_path=image_path,
+        mask_image_path=nana_banana_generation_mask,
+        product_url=product_url,
+    )
 
 
     # White background call: white_background.py
+    white_background.nano_banana_black_bg_to_white(nano_banana_image_path)
 
 
 
@@ -110,6 +152,21 @@ if __name__ == "__main__":
 
     # Nano banana variables: Nano_banana.py
     nano_banana_image_path = "/uploads/inpainted_manual_mask.png"
+
+    image_post_processing(
+        image_path=image_path, 
+        object_detection_json_name=object_detection_json_name, 
+        object_detection_debug=object_detection_debug, 
+        product_url=product_url,
+        target_object_json=target_object_json, 
+        output_directory=output_directory,
+        grounded_sam_segmented_image=grounded_sam_segmented_image,
+        yolo_masks_directory=yolo_masks_directory,
+        image_padding=image_padding,
+        grounded_sam_output_directory=grounded_sam_output_directory,
+        nana_banana_generation_mask=nana_banana_generation_mask,
+        nano_banana_image_path=nano_banana_image_path
+    )
 
 
 
