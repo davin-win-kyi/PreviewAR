@@ -9,6 +9,11 @@ import combine_two_mask
 import nano_banana
 import white_background
 
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
 
 
 # Pipeline method
@@ -82,7 +87,7 @@ def image_post_processing(image_path,
 
     mask_image.main(
         original_image = first_file,
-        second_file = second_file,
+        mask_image= second_file,
         out_image=third_file,
     )
 
@@ -95,17 +100,23 @@ def image_post_processing(image_path,
     )
 
     # Combined Mask call: combine_two_mask.py
-    first_image_mask = next(Path("object_white_mask").glob("*"), None)
+    first_image_mask = next(iter(sorted(Path("object_white_masks").glob("*"))), None)
     output_path= "mask_non_overlapping.png"
+
+    print("First_image_mask: ", first_image_mask)
+    print("Second_image_mask: ", second_file)
+    print("output path: ", output_path)
     combine_two_mask.xor_two_masks(
         mask_a_path=first_image_mask,
         mask_b_path=second_file,
         out_path=output_path,
     )
 
+
+
     # Nano banana call: Nano_banana.py
     nano_banana.run_full_inpaint_with_manual_mask(
-        original_image_path=image_path,
+        original_image_path="output/kept_with_white_bg.png",
         mask_image_path=nana_banana_generation_mask,
         product_url=product_url,
     )
@@ -151,7 +162,7 @@ if __name__ == "__main__":
     nana_banana_generation_mask = "mask_non_overlapping.png"
 
     # Nano banana variables: Nano_banana.py
-    nano_banana_image_path = "/uploads/inpainted_manual_mask.png"
+    nano_banana_image_path = "uploads/inpainted_manual_mask.png"
 
     image_post_processing(
         image_path=image_path, 

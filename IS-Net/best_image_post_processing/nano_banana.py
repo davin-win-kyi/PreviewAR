@@ -184,7 +184,15 @@ def recontext_masked_area(
     """
     Sends the combined image + prompt to Gemini to in-paint the masked area.
     """
-    client = genai.Client()
+    GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+    if not GOOGLE_API_KEY:
+        raise RuntimeError("GOOGLE_API_KEY is not set. Please export it in your environment.")
+
+    UPLOADS_DIR = "uploads"
+    os.makedirs(UPLOADS_DIR, exist_ok=True)
+
+    # Create a single global client
+    client = genai.Client(api_key=GOOGLE_API_KEY)
 
     full_prompt = prompt
     print("[gemini] prompt:", full_prompt)
