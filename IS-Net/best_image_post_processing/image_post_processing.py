@@ -94,7 +94,7 @@ def image_post_processing(image_path,
     # Yolo Mask call: get_object_img_masks.py
     get_object_img_masks.crop_white_masks_from_merged(
         image_path=image_path,
-        merged_json_path=target_object_json,
+        merged_json_path="best_image_yolo11_o365_seg.json",
         out_dir=yolo_masks_directory,
         pad=image_padding,
     )
@@ -131,9 +131,9 @@ def image_post_processing(image_path,
 if __name__ == "__main__":
 
     # Object detection variables: object_detection.py
-    image_path = "previewar_test#1.jpg"
-    object_detection_json_name = "previewar_test#1_yolo11_o365.json"
-    object_detection_debug = "previewar_test#1_yolo11_o365.jpg"
+    image_path = "best_image.jpg"
+    object_detection_json_name = "best_image_yolo11_o365.json"
+    object_detection_debug = "best_image_yolo11_o365.jpg"
 
     # Target object variables: Target_object.py
     product_url = (
@@ -144,14 +144,14 @@ if __name__ == "__main__":
         "zKvPqz8uqzZ5oAjIljfU3T1fj2lJKgKnqjlWxjA504G0RVwfRlQuUKr5bM.bAdATDJIW3OxMs6M16JiHRG9zAvYg7_B-SoRvPV4i5s&dib_tag=se&keywords=couch&qid=1762565138&"
         "sprefix=cou%2Caps%2C264&sr=8-5-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1"
     )
-    target_object_json = "previewar_test#1_yolo11_o365_merged_alias.json"
+    target_object_json = "best_image_yolo11_o365_merged_alias.json"
     output_directory = "crops"
 
     # Grounded SAM variables: mask_generation.py
 
 
     # Masked image variables: mask_image.py
-    grounded_sam_segmented_image = "/Users/davinwinkyi/PreviewAR-V2/PreviewAR/best_image_post_processing/output/kept_with_white_bg.png"
+    grounded_sam_segmented_image = "output/kept_with_white_bg.png"
 
     # Yolo Mask variables: get_object_img_masks.py
     yolo_masks_directory = "object_white_masks"

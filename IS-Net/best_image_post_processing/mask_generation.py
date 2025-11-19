@@ -172,11 +172,14 @@ class MaskGenerationRunner:
         saved: List[str] = []
         items_manifest: List[Dict] = []
 
+        # 🔐 Make sure output_dir exists (in case CWD changed or __init__ wasn't called)
+        os.makedirs(self.output_dir, exist_ok=True)
+
         with open(image, "rb") as f:
             output = replicate.run(
                 self.replicate_model,
                 input={
-                    "image": f,  # local file handle
+                    "image": f,
                     "mask_prompt": mask_prompt,
                     "negative_mask_prompt": negative_mask_prompt,
                     "adjustment_factor": adjustment_factor,
@@ -184,11 +187,12 @@ class MaskGenerationRunner:
             )
 
             for idx, item in enumerate(output):
-                # collect possible URLs/bytes and save images
                 urls = self._extract_image_urls(item)
                 saved_this = []
                 for j, url in enumerate(urls):
-                    out_path = os.path.join(self.output_dir, f"grounded_sam_{idx:03d}_{j:02d}.png")
+                    out_path = os.path.join(
+                        self.output_dir, f"grounded_sam_{idx:03d}_{j:02d}.png"
+                    )
                     try:
                         if isinstance(url, (bytes, bytearray)):
                             with open(out_path, "wb") as wf:
@@ -200,7 +204,6 @@ class MaskGenerationRunner:
                     except Exception as e:
                         saved_this.append(f"[save-error] {e}")
 
-                # store a JSON-safe summary of the item
                 items_manifest.append({
                     "step_index": idx,
                     "raw_item": json_safe(item),
@@ -208,7 +211,6 @@ class MaskGenerationRunner:
                     "saved_files": saved_this,
                 })
 
-        # Write a run manifest JSON (JSON-safe)
         manifest = {
             "replicate_model": self.replicate_model,
             "source_image": str(image),
@@ -219,11 +221,17 @@ class MaskGenerationRunner:
             "num_files_saved": len(saved),
             "items": items_manifest,
         }
+
         manifest_path = os.path.join(self.output_dir, "grounded_sam_output.json")
+
+        # 🔐 Ensure the directory for the manifest exists
+        os.makedirs(os.path.dirname(manifest_path), exist_ok=True)
+
         with open(manifest_path, "w", encoding="utf-8") as jf:
             json.dump(manifest, jf, ensure_ascii=False, indent=2)
 
         return {"saved_files": saved, "manifest_path": manifest_path}
+
 
     def _extract_image_urls(self, item) -> List[str | bytes]:
         """

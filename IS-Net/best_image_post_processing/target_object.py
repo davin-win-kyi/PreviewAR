@@ -36,42 +36,6 @@ def strip_code_fences(s: str) -> str:
     s = re.sub(r'\n\s*```\s*$', '', s, count=1)
     return s
 
-
-def _bbox_xyxy_from_xywh(b: List[float]) -> Tuple[float, float, float, float]:
-    """
-    Convert [x, y, w, h] -> (x1, y1, x2, y2).
-    """
-    x, y, w, h = b
-    return x, y, x + w, y + h
-
-
-def _bbox_iou_xyxy(b1: List[float], b2: List[float]) -> float:
-    """
-    IoU between two boxes given as [x, y, w, h].
-    """
-    x1a, y1a, x2a, y2a = _bbox_xyxy_from_xywh(b1)
-    x1b, y1b, x2b, y2b = _bbox_xyxy_from_xywh(b2)
-
-    # intersection
-    xi1 = max(x1a, x1b)
-    yi1 = max(yi1, y1b) if (yi1 := max(y1a, y1b)) else max(y1a, y1b)  # just to avoid lint complaints
-    xi2 = min(x2a, x2b)
-    yi2 = min(y2a, y2b)
-
-    inter_w = max(0.0, xi2 - xi1)
-    inter_h = max(0.0, yi2 - yi1)
-    inter = inter_w * inter_h
-
-    # areas
-    area_a = max(0.0, x2a - x1a) * max(0.0, y2a - y1a)
-    area_b = max(0.0, x2b - x1b) * max(0.0, y2b - y1b)
-
-    denom = area_a + area_b - inter
-    if denom <= 0.0:
-        return 0.0
-    return inter / denom
-
-
 class ProductCropper:
     """
     End-to-end:
@@ -265,89 +229,6 @@ class ProductCropper:
             saved.append(out_path)
         return saved
 
-    # ---------- merge bbox-only JSON + seg JSON for an alias ----------
-    def build_alias_bbox_mask_json(
-        self,
-        alias: str,
-        bbox_json_path: str,
-        seg_json_path: str,
-        out_path: Optional[str] = None,
-        iou_thresh: float = 0.3,
-    ) -> Dict:
-        """
-        Merge a bbox-only JSON and a seg JSON for a given class alias.
-        """
-        alias_l = alias.lower()
-
-        # ---- load JSONs ----
-        with open(bbox_json_path, "r") as f:
-            bbox_data = json.load(f)
-        with open(seg_json_path, "r") as f:
-            seg_data = json.load(f)
-
-        bbox_objs = [
-            obj for obj in bbox_data.get("objects", [])
-            if (obj.get("object_name") or "").strip().lower() == alias_l
-        ]
-
-        seg_objs = [
-            obj for obj in seg_data.get("objects", [])
-            if (obj.get("object_name") or "").strip().lower() == alias_l
-        ]
-
-        merged_objects = []
-
-        # Track which segmentation objects are already matched
-        used_seg_idxs = set()
-
-        for i, bobj in enumerate(bbox_objs):
-            bb = bobj.get("bounding_box") or [0, 0, 0, 0]
-
-            best_iou = 0.0
-            best_j = None
-
-            for j, sobj in enumerate(seg_objs):
-                if j in used_seg_idxs:
-                    continue
-                sb = sobj.get("bounding_box") or [0, 0, 0, 0]
-                iou = _bbox_iou_xyxy(bb, sb)
-                if iou > best_iou:
-                    best_iou = iou
-                    best_j = j
-
-            if best_j is not None and best_iou >= iou_thresh:
-                sobj = seg_objs[best_j]
-                used_seg_idxs.add(best_j)
-                mask_poly = sobj.get("mask_polygon")  # might be None or list
-                mconf = sobj.get("confidence", None)
-            else:
-                mask_poly = None
-                mconf = None
-
-            merged_objects.append({
-                "object_name": bobj.get("object_name"),
-                "bounding_box": bb,
-                "mask_polygon": mask_poly,
-                "bbox_confidence": bobj.get("confidence", None),
-                "mask_confidence": mconf,
-                "iou_match": float(best_iou),
-            })
-
-        out = {
-            "alias": alias,
-            "objects": merged_objects,
-            "source_bbox_json": str(bbox_json_path),
-            "source_seg_json": str(seg_json_path),
-            "iou_threshold": iou_thresh,
-        }
-
-        if out_path is not None:
-            with open(out_path, "w") as f:
-                json.dump(out, f, indent=2)
-            print(f"[merge] Saved alias bbox+mask JSON → {out_path}")
-
-        return out
-
 
 # ---------- new callable "main" pipeline function ----------
 
@@ -363,14 +244,14 @@ def run_product_cropping_pipeline(
     High-level pipeline you can call from other code.
 
     It:
-      1) Runs ProductCropper.run (bbox-only detection + cropping)
-      2) Ensures bbox + seg JSONs exist
-      3) Merges bbox + seg JSONs for the chosen alias
-      4) Returns a dict with all relevant outputs
+      1) Runs ProductCropper.run (to decide target_class and make crops)
+      2) Ensures seg JSON + annotated seg image exist
+      3) Filters seg JSON so it ONLY contains objects whose object_name == target_class
+      4) Returns summary + filtered seg_json path + annotated image path
     """
     pc = ProductCropper(gpt_model="gpt-5")
 
-    # 1) main pipeline (bbox-only detection via object_detection.py)
+    # 1) main pipeline
     summary = pc.run(
         image_path=image_path,
         product_url=product_url,
@@ -388,19 +269,23 @@ def run_product_cropping_pipeline(
         "out_dir": summary["out_dir"]
     }, indent=2))
 
-    # 2) bbox-only JSON
-    stem = Path(image_path).stem
-    bbox_json = f"{stem}_yolo11_o365.json"
-    if not Path(bbox_json).exists():
-        det = od.get_objects_json(image_path, conf=conf, iou=iou)
-        with open(bbox_json, "w") as f:
-            json.dump(det, f, indent=2)
-        print(f"[bbox] Saved → {bbox_json}")
+    # Alias / target class name (used for filtering)
+    alias = summary["target_class"]
+    alias_lower = alias.lower()
 
-    # 3) segmentation JSON + annotated mask image
+    # 2) segmentation JSON + annotated mask image
+    stem = Path(image_path).stem
     seg_json = f"{stem}_yolo11_o365_seg.json"
     seg_img  = f"{stem}_yolo11_o365_seg.jpg"
-    if not Path(seg_json).exists():
+
+    if Path(seg_json).exists():
+        # Load existing segmentation results
+        with open(seg_json, "r") as f:
+            seg_res = json.load(f)
+        seg_out_img = seg_img  # assume already created earlier
+        print(f"[seg] Loaded existing JSON → {seg_json}")
+    else:
+        # Run segmentation model and save results
         seg_res = ods.get_objects_json(image_path, conf=conf, iou=iou)
         with open(seg_json, "w") as f:
             json.dump(seg_res, f, indent=2)
@@ -408,29 +293,32 @@ def run_product_cropping_pipeline(
 
         seg_out_img = ods.draw_boxes_and_masks_pil(image_path, seg_res, seg_img)
         print(f"[seg] Saved annotated image → {seg_out_img}")
-    else:
-        seg_out_img = seg_img
 
-    # 4) merge bbox + seg JSON for the chosen target class alias
-    alias = summary["target_class"]
-    merged_out = f"{stem}_yolo11_o365_merged_alias.json"
+    # 3) Filter seg_res to ONLY include objects of the alias/target class
+    filtered_objects = [
+        obj for obj in seg_res.get("objects", [])
+        if (obj.get("object_name") or "").strip().lower() == alias_lower
+    ]
 
-    merged = pc.build_alias_bbox_mask_json(
-        alias=alias,
-        bbox_json_path=bbox_json,
-        seg_json_path=seg_json,
-        out_path=merged_out,
-        iou_thresh=0.3,
+    seg_res_filtered = dict(seg_res)
+    seg_res_filtered["objects"] = filtered_objects
+
+    # Overwrite seg_json with filtered objects only
+    with open(seg_json, "w") as f:
+        json.dump(seg_res_filtered, f, indent=2)
+
+    print(
+        f"[seg] Overwrote {seg_json} with only objects of class '{alias}' "
+        f"({len(filtered_objects)} objects)"
     )
 
     return {
         "summary": summary,
-        "bbox_json": bbox_json,
-        "seg_json": seg_json,
+        "seg_json": seg_json,               # filtered to only alias objects
         "seg_annotated_image": seg_out_img,
-        "merged_json": merged_out,
-        "merged_data": merged,
+        "filtered_objects": filtered_objects,
     }
+
 
 
 # ---------- example usage via __main__ ----------

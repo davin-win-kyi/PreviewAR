@@ -302,6 +302,7 @@ def run_full_inpaint_with_manual_mask(
     print("[summary] inpaint prompt:", prompt)
 
     # 3–4) Combine + inpaint using your manual mask
+    os.makedirs(UPLOADS_DIR, exist_ok=True)
     combined_output_path = os.path.join(UPLOADS_DIR, "combined_manual_mask.png")
     inpainted_output_path = os.path.join(UPLOADS_DIR, "inpainted_manual_mask.png")
 
