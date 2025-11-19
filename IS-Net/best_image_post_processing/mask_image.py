@@ -8,7 +8,7 @@ USE_ALPHA_IF_PRESENT = True  # if mask has an alpha channel, use it directly
 
 
 def load_image(path: str, flags=cv2.IMREAD_UNCHANGED):
-    img = cv2.imread(path, flags)
+    img = cv2.imread(str(path), flags)
     if img is None:
         raise FileNotFoundError(f"Could not read image: {path}")
     return img

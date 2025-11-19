@@ -1,13 +1,12 @@
 # Nessecary Imports
 from pathlib import Path
-import object_detection
-import target_object
-import mask_generation
-import mask_image
-import get_object_img_masks
-import combine_two_mask
-import nano_banana
-import white_background
+import best_image_post_processing.target_object as target_object
+import best_image_post_processing.mask_generation as mask_generation
+import best_image_post_processing.mask_image as mask_image
+import best_image_post_processing.get_object_img_masks as get_object_img_masks
+import best_image_post_processing.combine_two_mask as combine_two_mask
+import best_image_post_processing.nano_banana as nano_banana
+import best_image_post_processing.white_background as white_background
 
 from dotenv import load_dotenv
 
@@ -81,9 +80,13 @@ def image_post_processing(image_path,
     """
     Get the third image from the output folder
     """
-    first_file = next(Path("crops").glob("*"), None)
-    second_file = sorted(p for p in Path("output").iterdir() if p.is_file())[2]
-    third_file = "output/kept_with_white_bg.png"
+    first_file = next(Path("best_image_post_processing/crops").glob("*"), None)
+    second_file = sorted(p for p in Path("best_image_post_processing/output").iterdir() if p.is_file())[2]
+    third_file = "best_image_post_processing/output/kept_with_white_bg.png"
+
+    print("First_file: ", first_file)
+    print("Second_file: ", second_file)
+    print("Third file: ", third_file)
 
     mask_image.main(
         original_image = first_file,
@@ -94,14 +97,14 @@ def image_post_processing(image_path,
     # Yolo Mask call: get_object_img_masks.py
     get_object_img_masks.crop_white_masks_from_merged(
         image_path=image_path,
-        merged_json_path="best_image_yolo11_o365_seg.json",
+        merged_json_path="best_image_post_processing/best_image_yolo11_o365_seg.json",
         out_dir=yolo_masks_directory,
         pad=image_padding,
     )
 
     # Combined Mask call: combine_two_mask.py
-    first_image_mask = next(iter(sorted(Path("object_white_masks").glob("*"))), None)
-    output_path= "mask_non_overlapping.png"
+    first_image_mask = next(iter(sorted(Path("best_image_post_processing/object_white_masks").glob("*"))), None)
+    output_path= "best_image_post_processing/mask_non_overlapping.png"
 
     print("First_image_mask: ", first_image_mask)
     print("Second_image_mask: ", second_file)
@@ -116,7 +119,7 @@ def image_post_processing(image_path,
 
     # Nano banana call: Nano_banana.py
     nano_banana.run_full_inpaint_with_manual_mask(
-        original_image_path="output/kept_with_white_bg.png",
+        original_image_path="best_image_post_processing/output/kept_with_white_bg.png",
         mask_image_path=nana_banana_generation_mask,
         product_url=product_url,
     )

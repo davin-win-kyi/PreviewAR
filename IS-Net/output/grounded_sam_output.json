@@ -1,0 +1,55 @@
+{
+  "replicate_model": "schananas/grounded_sam:ee871c19efb1941f55f66a3d7d960428c8a5afcb77449547fe8e5a3ab9ebc21c",
+  "source_image": "crops\\best_image_couch_003.jpg",
+  "mask_prompt": "Couch",
+  "negative_mask_prompt": "Basket,Chair,Pillow",
+  "adjustment_factor": -15,
+  "output_dir": "output",
+  "num_files_saved": 4,
+  "items": [
+    {
+      "step_index": 0,
+      "raw_item": {
+        "type": "FileOutput",
+        "url": "https://replicate.delivery/xezq/VdReefLmBKbR4JN1DjZ33UUhp3hz2bZ3lPFvZffZ5RLydsWtC/annotated_picture_mask.jpg"
+      },
+      "extracted_urls_count": 1,
+      "saved_files": [
+        "output\\grounded_sam_000_00.png"
+      ]
+    },
+    {
+      "step_index": 1,
+      "raw_item": {
+        "type": "FileOutput",
+        "url": "https://replicate.delivery/xezq/AdvMpArLq6LrJ5Aeq76jhFuXxnSYNmFITVokEUtUHLG3xa1KA/neg_annotated_picture_mask.jpg"
+      },
+      "extracted_urls_count": 1,
+      "saved_files": [
+        "output\\grounded_sam_001_00.png"
+      ]
+    },
+    {
+      "step_index": 2,
+      "raw_item": {
+        "type": "FileOutput",
+        "url": "https://replicate.delivery/xezq/pB6Rpz93oJ7vJl0VkYjnffmdvXDWrEYuIRme1UIqjcycHrVrA/mask.jpg"
+      },
+      "extracted_urls_count": 1,
+      "saved_files": [
+        "output\\grounded_sam_002_00.png"
+      ]
+    },
+    {
+      "step_index": 3,
+      "raw_item": {
+        "type": "FileOutput",
+        "url": "https://replicate.delivery/xezq/88giiwPCjur1Kppx2oB0Be2TEgzt4ffFRaIoqjWtuklcHrVrA/inverted_mask.jpg"
+      },
+      "extracted_urls_count": 1,
+      "saved_files": [
+        "output\\grounded_sam_003_00.png"
+      ]
+    }
+  ]
+}

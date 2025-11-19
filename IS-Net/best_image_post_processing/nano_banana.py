@@ -11,7 +11,7 @@ from google import genai
 from google.genai.types import GenerateContentConfig
 
 # Your earlier pipeline (the big script you posted with MaskGenerationRunner)
-from mask_generation import MaskGenerationRunner  # adjust filename if needed
+from best_image_post_processing.mask_generation import MaskGenerationRunner  # adjust filename if needed
 
 # -------------------------------------------------------------------
 # Environment + dirs

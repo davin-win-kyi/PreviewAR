@@ -11,12 +11,12 @@ import cv2
 from openai import OpenAI
 
 # Bbox-only YOLO (e.g. Objects365 detector)
-import object_detection as od
+import best_image_post_processing.object_detection as od
 
 # Segmentation YOLO (yolo11n-seg)
-import object_detection_segmented as ods
+import best_image_post_processing.object_detection_segmented as ods
 
-import extract_url_info as eui 
+import best_image_post_processing.extract_url_info as eui 
 
 from dotenv import load_dotenv
 

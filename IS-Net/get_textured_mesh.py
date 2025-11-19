@@ -81,40 +81,35 @@ def main():
     and also put in the right parameters into image_post_processing
     """
         # Object detection variables: object_detection.py
-    image_path = "previewar_test#1.jpg"
-    object_detection_json_name = "previewar_test#1_yolo11_o365.json"
-    object_detection_debug = "previewar_test#1_yolo11_o365.jpg"
+    image_path = "best_image.png"
+    object_detection_json_name = "best_image_post_processing/best_image_yolo11_o365.json"
+    object_detection_debug = "best_image_post_processing/best_image_yolo11_o365.jpg"
 
     # Target object variables: Target_object.py
     product_url = (
-        "https://www.amazon.com/MODNEST-Modular-Sectional-Boneless-Assembly/dp/"
-        "B0FCYC86TT/ref=sr_1_5_sspa?crid=3RIV4C6CTWYQA&dib=eyJ2IjoiMSJ9."
-        "mCR5SjVr3IuoofQI97UxVmePO3nKmQbrqGkH6q7BhCWvXZfA2gaJDgyWsF100Jp3IznRSrEL8WKrwF2Xtlr-Q6YdVwugk_h-"
-        "vhluo-EvhxJBqShb2gctTmjV71AXRyHOoPE6xC5K1iS8ITO3gdrhSf93HanYw7yk5iuIDU0gQFvfQLiPHo05ZX5PuYYk5As943eAeCxhe_d7i07UPtixVaCT_4yDty6lWukpMHvQmtssdgjG_"
-        "zKvPqz8uqzZ5oAjIljfU3T1fj2lJKgKnqjlWxjA504G0RVwfRlQuUKr5bM.bAdATDJIW3OxMs6M16JiHRG9zAvYg7_B-SoRvPV4i5s&dib_tag=se&keywords=couch&qid=1762565138&"
-        "sprefix=cou%2Caps%2C264&sr=8-5-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1"
+        "https://www.amazon.com/Vesgantti-Cloud-Sectional-Corduroy-Right-Facing/dp/B0FNRNFH23/ref=sr_1_6?crid=1RGQC8GP21GVE&dib=eyJ2IjoiMSJ9.6yhPLIAaV77WfAePh8vDx5zfgTJUi1jvY7S1GR2vUass_EUWjVrPYbFkRb172hZqQ_B5toEm-PCe3mJBq1utg0nn6ZKJ0sj8rutPEFhKt0dH2uL4QCKN9GRHu-67LTHt8-DS-PJVapyhUh1adGW0GaslDNlgQNXs-bjwDL0xM4cDb4WFVMsY5uAMHagfau2XkuRquc5PoYEyWSc5RYYunPxVo8M6CvvaUmSsrFTKt3c3rqD4Z5iB8YAvjEwTDy62b-MX3BZ-cEK085tUPU4AQrh2KohRHte39FJrbIIYN1s.Stad0IZR62UHGKGGwDIZap28tlvgu-g7tr6Po0n216g&dib_tag=se&keywords=couch&qid=1763540421&sprefix=couc%2Caps%2C249&sr=8-6&ufe=app_do%3Aamzn1.fos.5998aa40-ec6f-4947-a68f-cd087fee0848&th=1"
     )
-    target_object_json = "previewar_test#1_yolo11_o365_merged_alias.json"
-    output_directory = "crops"
+    target_object_json = "best_image_post_processing/previewar_test#1_yolo11_o365_merged_alias.json"
+    output_directory = "best_image_post_processing/crops"
 
     # Grounded SAM variables: mask_generation.py
 
 
     # Masked image variables: mask_image.py
-    grounded_sam_segmented_image = "/Users/davinwinkyi/PreviewAR-V2/PreviewAR/best_image_post_processing/output/kept_with_white_bg.png"
+    grounded_sam_segmented_image = "best_image_post_processing/output/kept_with_white_bg.png"
 
     # Yolo Mask variables: get_object_img_masks.py
-    yolo_masks_directory = "object_white_masks"
+    yolo_masks_directory = "best_image_post_processing/object_white_masks"
     image_padding = 0
 
     # Combined Mask variable: combine_two_mask.py
-    grounded_sam_output_directory = "output"
-    nana_banana_generation_mask = "mask_non_overlapping.png"
+    grounded_sam_output_directory = "best_image_post_processing/output"
+    nana_banana_generation_mask = "best_image_post_processing/mask_non_overlapping.png"
 
     # Nano banana variables: Nano_banana.py
-    nano_banana_image_path = "uploads/inpainted_manual_mask.png"
+    nano_banana_image_path = "best_image_post_processing/uploads/inpainted_manual_mask.png"
 
-    image_post_processing(
+    image_post_processing.image_post_processing(
         image_path=image_path, 
         object_detection_json_name=object_detection_json_name, 
         object_detection_debug=object_detection_debug, 
@@ -129,7 +124,7 @@ def main():
         nano_banana_image_path=nano_banana_image_path
     )
     
-    post_processed_image = "uploads/post_processing_image.png"
+    post_processed_image = "best_image_post_processing/uploads/post_processing_image.png"
 
     # setting arguments for later use
     ap = argparse.ArgumentParser(description="Drive Hunyuan3D Gradio with Selenium and fetch textured mesh.")

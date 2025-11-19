@@ -10,8 +10,8 @@ import cv2
 import replicate
 
 # Your existing modules
-import object_detection as od
-from target_object import ProductCropper
+import best_image_post_processing.object_detection as od
+from best_image_post_processing.target_object import ProductCropper
 
 
 def json_safe(obj: Any) -> Any:
