@@ -19,6 +19,66 @@ import json
 from best_image_post_processing import image_post_processing
 
 
+import os
+import shutil
+from pathlib import Path
+
+def clean_best_image_artifacts(base_dir: str = "."):
+    """
+    Deletes specific folders and files under best_image_post_processing,
+    then recreates the folders (empty).
+
+    Folders removed & recreated:
+      - best_image_post_processing/crops
+      - best_image_post_processing/object_white_masks
+      - best_image_post_processing/output
+      - best_image_post_processing/uploads
+
+    Files removed (not recreated):
+      - best_image_post_processing/best_image_yolo11_o365_seg.jpg
+      - best_image_post_processing/best_image_yolo11_o365_seg.json
+    """
+    base_path = Path(base_dir) / "best_image_post_processing"
+
+    # Folders to delete & later recreate
+    folders = [
+        "crops",
+        "object_white_masks",
+        "output",
+        "uploads",
+    ]
+
+    # Files to delete
+    files = [
+        "best_image_yolo11_o365_seg.jpg",
+        "best_image_yolo11_o365_seg.json",
+    ]
+
+    # Delete folders
+    for folder in folders:
+        folder_path = base_path / folder
+        if folder_path.exists() and folder_path.is_dir():
+            print(f"Deleting folder: {folder_path}")
+            shutil.rmtree(folder_path)
+        else:
+            print(f"Folder not found (skipping): {folder_path}")
+
+    # Delete files
+    for file_name in files:
+        file_path = base_path / file_name
+        if file_path.exists() and file_path.is_file():
+            print(f"Deleting file: {file_path}")
+            file_path.unlink()
+        else:
+            print(f"File not found (skipping): {file_path}")
+
+    # Recreate folders (empty)
+    for folder in folders:
+        folder_path = base_path / folder
+        print(f"Recreating folder: {folder_path}")
+        folder_path.mkdir(parents=True, exist_ok=True)
+
+
 
 def newest_glb_from_cache(cache_dir: str, started_after: float):
     """
@@ -46,6 +106,13 @@ def newest_glb_from_cache(cache_dir: str, started_after: float):
 
 def main():
 
+    """
+    In the beginning make sure to, clear all the folders
+    so that none of the previous crops, object_white_masks, output, uploads are present
+    - also make sure to delete the seg jsons from the previous runs
+    """
+    clean_best_image_artifacts()
+
     # handling the amazon case right now
     # out_path = process_url("https://www.amazon.com/Sectional-Minimalist-Upholstered-Couch%EF%BC%8CNo-Assembly/dp/B0DMSPJ97J/ref=sxin_16_pa_sp_search_thematic_sspa?content-id=amzn1.sym.a1bc2dac-8d07-44d1-9477-59bc11451909%3Aamzn1.sym.a1bc2dac-8d07-44d1-9477-59bc11451909&crid=1X7V4GO2K8PE9&cv_ct_cx=couch&keywords=couch&pd_rd_i=B0DMSPJ97J&pd_rd_r=00c418e9-74a0-40d2-882c-295d127e6cef&pd_rd_w=e9VtT&pd_rd_wg=lfOx6&pf_rd_p=a1bc2dac-8d07-44d1-9477-59bc11451909&pf_rd_r=6VAC3N6XWY0GH5P85MSB&qid=1761351451&s=home-garden&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=couch%2Cgarden%2C391&sr=1-2-9428117c-b940-4daa-97e9-ad363ada7940-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9zZWFyY2hfdGhlbWF0aWM&th=1", "test.json")
     url = (
@@ -61,7 +128,7 @@ def main():
         # "&th=1"
 
         """
-        https://www.amazon.com/MODNEST-Modular-Sectional-Boneless-Assembly/dp/B0FCYC86TT/ref=sr_1_5_sspa?crid=3RIV4C6CTWYQA&dib=eyJ2IjoiMSJ9.mCR5SjVr3IuoofQI97UxVmePO3nKmQbrqGkH6q7BhCWvXZfA2gaJDgyWsF100Jp3IznRSrEL8WKrwF2Xtlr-Q6YdVwugk_h-vhluo-EvhxJBqShb2gctTmjV71AXRyHOoPE6xC5K1iS8ITO3gdrhSf93HanYw7yk5iuIDU0gQFvfQLiPHo05ZX5PuYYk5As943eAeCxhe_d7i07UPtixVaCT_4yDty6lWukpMHvQmtssdgjG_zKvPqz8uqzZ5oAjIljfU3T1fj2lJKgKnqjlWxjA504G0RVwfRlQuUKr5bM.bAdATDJIW3OxMs6M16JiHRG9zAvYg7_B-SoRvPV4i5s&dib_tag=se&keywords=couch&qid=1762565138&sprefix=cou%2Caps%2C264&sr=8-5-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1
+        https://www.amazon.com/Vesgantti-Cloud-Sectional-Chenille-Left-Facing/dp/B0FKGSHC74/ref=sr_1_2_sspa?dib=eyJ2IjoiMSJ9.1zBsCSqJxO1X6i2gfj5yhJjnxWCqmZPx5tTCyRXSH8npv2Q_t0g_kMjhbY_e1soTN1Fj-sRK8Ugkx3Krbm8B-uHVbywxrdaAgf4lJGADLa0GLj5LNK_ifGfd6LlzSOFfXLPe_Q7DHB_NDTgp9S3Ql7lYt-V2HL9YFvB-8B9YByPIWBOVjsiNC3O9C9-b4NUawxb-mbg-oQhWVZe7vTs84GiqYr5-UDjXgFWgqz41glJV6OWcmEMhO8wEPNdan2UaBbiP-p67qjD6I8pZqScDZL2NB04x3qevUIu5o2aLgj4.yZVLUFl632Qpdv2phmDAWmrJCjIdX7Dhq1gNRG_P4Q0&dib_tag=se&keywords=couch&qid=1763603235&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1
         """
     )
         

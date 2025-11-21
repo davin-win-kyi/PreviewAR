@@ -45,6 +45,171 @@ def json_safe(obj: Any) -> Any:
     return repr(obj)
 
 
+import os
+import json
+import base64
+from typing import List, Dict, Any
+
+from openai import OpenAI
+
+# Make sure OPENAI_API_KEY is set in your environment.
+client = OpenAI()
+
+
+def encode_image_to_base64(image_path: str) -> str:
+    """
+    Read an image from disk and return a base64-encoded data URL string.
+    """
+    with open(image_path, "rb") as f:
+        img_bytes = f.read()
+    b64 = base64.b64encode(img_bytes).decode("utf-8")
+    # You can tweak the mime type if you know it (jpeg/png).
+    return f"data:image/jpeg;base64,{b64}"
+
+
+def strip_code_fences(s: str) -> str:
+    """
+    Remove ``` or ```json ... ``` fences around JSON, if present.
+    """
+    s = s.strip()
+    if s.startswith("```"):
+        # remove starting fence line
+        s = s.split("\n", 1)[-1]
+    if s.endswith("```"):
+        s = s.rsplit("```", 1)[0]
+    return s.strip()
+
+
+def gpt_objects_not_alias(
+    image_path: str,
+    alias_name: str,
+    model: str = "gpt-5",
+    max_objects: int = 20,
+) -> Dict[str, Any]:
+    """
+    Ask GPT (vision) to look at an image, list all objects,
+    then (via instructions) exclude the target alias class.
+
+    Returns:
+      {
+        "all_objects": [...],          # everything GPT listed
+        "non_alias_objects": [...],    # filtered list (no alias / synonyms)
+        "negative_prompt": "a, b, c"   # comma-separated string
+      }
+    """
+    data_url = encode_image_to_base64(image_path)
+
+    # We tell GPT to:
+    #  - List distinct object categories (not pixel-precise labels)
+    #  - Exclude the alias and its obvious synonyms
+    #  - Return JSON only
+    user_text = f"""
+        You are helping build a negative prompt for an image segmentation model.
+
+        You are given:
+        - A single photo (a product scene).
+        - The target object alias: "{alias_name}".
+
+        Your job:
+        1. Look at the photo.
+        2. Identify up to {max_objects} visually distinct object categories you clearly see
+        in the scene (for example: "pillow", "blanket", "floor", "wall", "lamp",
+        "coffee table", "plant").
+        3. DO NOT include the main target object type ("{alias_name}") or any obvious
+        synonyms / variations of the same object type (e.g. "sofa", "couch",
+        "sectional" if the alias is "sofa", etc.).
+        4. Use lowercase, English, singular nouns (e.g. "pillow", not "Pillows").
+        5. Remove very generic words like "thing", "object", "stuff".
+
+        Return ONLY valid JSON of the form:
+
+        {{
+        "all_objects": ["..."],
+        "non_alias_objects": ["..."]
+        }}
+        """
+
+    resp = client.chat.completions.create(
+        model=model,
+        messages=[
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": user_text},
+                    {
+                        "type": "image_url",
+                        "image_url": {"url": data_url},
+                    },
+                ],
+            }
+        ],
+    )
+
+    raw = resp.choices[0].message.content
+    raw = strip_code_fences(raw)
+
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError:
+        # If something goes wrong, just fall back to an empty result.
+        data = {"all_objects": [], "non_alias_objects": []}
+
+    def _norm_list(key: str) -> List[str]:
+        vals = data.get(key, [])
+        out: List[str] = []
+        seen = set()
+        for v in vals:
+            v = v.strip().lower()
+            if not v:
+                continue
+            if v not in seen:
+                seen.add(v)
+                out.append(v)
+        return out
+
+    all_objects = _norm_list("all_objects")
+    non_alias_objects = _norm_list("non_alias_objects")
+
+    # Safety check: if non_alias_objects came back empty but all_objects is non-empty,
+    # we can derive non_alias_objects by filtering anything that obviously
+    # matches the alias string.
+    if not non_alias_objects and all_objects:
+        alias_lower = alias_name.lower()
+        non_alias_objects = [
+            o for o in all_objects
+            if alias_lower not in o  # simple filter; GPT already tried to exclude though
+        ]
+
+    negative_prompt = ", ".join(non_alias_objects) if non_alias_objects else "none"
+
+    return {
+        "all_objects": all_objects,
+        "non_alias_objects": non_alias_objects,
+        "negative_prompt": negative_prompt,
+    }
+
+
+def build_negative_prompt_for_image(
+    image_path: str,
+    alias_name: str,
+    model: str = "gpt-5",
+) -> Dict[str, Any]:
+    """
+    Convenience wrapper: returns alias + negative prompt data.
+    """
+    result = gpt_objects_not_alias(
+        image_path=image_path,
+        alias_name=alias_name,
+        model=model,
+    )
+    return {
+        "alias": alias_name,
+        "all_objects": result["all_objects"],
+        "non_alias_objects": result["non_alias_objects"],
+        "negative_prompt": result["negative_prompt"],
+    }
+
+
 class MaskGenerationRunner:
     """
     End-to-end helper:
@@ -58,8 +223,8 @@ class MaskGenerationRunner:
     def __init__(
         self,
         replicate_model: str = "schananas/grounded_sam:ee871c19efb1941f55f66a3d7d960428c8a5afcb77449547fe8e5a3ab9ebc21c",
-        crops_dir: str = "crops",
-        output_dir: str = "output",
+        crops_dir: str = "best_image_post_processing/crops",
+        output_dir: str = "best_image_post_processing/output",
     ):
         self.replicate_model = replicate_model
         self.crops_dir = crops_dir
@@ -89,6 +254,7 @@ class MaskGenerationRunner:
             conf=conf,
             iou=iou,
             use_gpt=use_gpt,
+            save_crops=False
         )
         target_class = summary["target_class"]
 
@@ -104,15 +270,27 @@ class MaskGenerationRunner:
                 "output_dir": self.output_dir,
             }
 
-        # 3) Run YOLO on the crop to list present classes
+        # 3) (optional) Run YOLO on the crop to list present classes
         classes_in_crop = self._detect_classes_on_image(crop_path)
 
         # 4) Prepare prompts
         mask_prompt = target_class
-        negative_mask_prompt = (
-            ",".join(sorted({c for c in classes_in_crop if c.lower() != target_class.lower()}))
-            or "none"
-        )
+
+        if use_gpt:
+            # GPT looks at the crop image and builds a negative prompt
+            neg_info = build_negative_prompt_for_image(
+                image_path=crop_path,
+                alias_name=target_class,
+                model="gpt-5",  # or "gpt-5" once vision is enabled there
+            )
+            negative_mask_prompt = neg_info["negative_prompt"]
+            gpt_non_alias_objects = neg_info["non_alias_objects"]
+        else:
+            # fall back to YOLO-based list
+            gpt_non_alias_objects = sorted(
+                {c for c in classes_in_crop if c.lower() != target_class.lower()}
+            )
+            negative_mask_prompt = ",".join(gpt_non_alias_objects) or "none"
 
         # 5) Replicate call + manifest
         rep_out = self._call_replicate_grounded_sam(
@@ -127,6 +305,7 @@ class MaskGenerationRunner:
             "classes_in_crop": classes_in_crop,
             "mask_prompt": mask_prompt,
             "negative_mask_prompt": negative_mask_prompt,
+            "gpt_non_alias_objects": gpt_non_alias_objects,
             "output_files": rep_out["saved_files"],
             "manifest_path": rep_out["manifest_path"],
             "crops_dir": self.crops_dir,
@@ -174,6 +353,9 @@ class MaskGenerationRunner:
 
         # 🔐 Make sure output_dir exists (in case CWD changed or __init__ wasn't called)
         os.makedirs(self.output_dir, exist_ok=True)
+
+        print("Mask prompt: ", mask_prompt)
+        print("negative mask prompt: ", negative_mask_prompt)
 
         with open(image, "rb") as f:
             output = replicate.run(

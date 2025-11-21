@@ -67,12 +67,14 @@ def image_post_processing(image_path,
         image_path=image_path,
         product_url=product_url,
         out_dir=output_directory,
+        save_crops=True
     )
 
     # Grounded SAM call: mask_generation.py
+    first_image = next(Path("best_image_post_processing/crops").glob("*"), None)
     runner = mask_generation.MaskGenerationRunner()
     runner.run(
-        image_path = image_path,
+        image_path = first_image,
         product_url = product_url,
     )
 

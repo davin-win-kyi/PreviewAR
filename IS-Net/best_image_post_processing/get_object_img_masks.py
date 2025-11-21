@@ -35,7 +35,7 @@ def _polygon_bbox(pts: List[Tuple[int, int]]) -> Optional[Tuple[int, int, int, i
 def crop_white_masks_from_merged(
     image_path: str,
     merged_json_path: str,
-    out_dir: str = "object_white_masks",
+    out_dir: str = "best_image_post_processing/object_white_masks",
     pad: int = 4,
 ) -> list[str]:
     """

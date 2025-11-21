@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai.types import GenerateContentConfig
 
+from pathlib import Path
+
 # Your earlier pipeline (the big script you posted with MaskGenerationRunner)
 from best_image_post_processing.mask_generation import MaskGenerationRunner  # adjust filename if needed
 
@@ -18,8 +20,80 @@ from best_image_post_processing.mask_generation import MaskGenerationRunner  # a
 # -------------------------------------------------------------------
 load_dotenv()
 
-UPLOADS_DIR = "uploads"
+UPLOADS_DIR = "best_image_post_processing/uploads"
 os.makedirs(UPLOADS_DIR, exist_ok=True)
+
+def get_non_alias_objects_from_image(
+    image_path: str,
+    target_class: str,
+) -> List[str]:
+    """
+    Uses Gemini vision to look at `image_path` and list objects that are
+    clearly visible BUT are NOT the alias/target class (or synonyms).
+
+    Returns a deduplicated, lowercase list like:
+      ["pillow", "blanket", "floor", "wall"]
+    """
+    GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+    if not GOOGLE_API_KEY:
+        raise RuntimeError("GOOGLE_API_KEY is not set. Please export it in your environment.")
+
+    client = genai.Client(api_key=GOOGLE_API_KEY)
+
+    image = Image.open(image_path)
+
+    prompt = f"""
+You are given a product photo. The main product (target) is a "{target_class}".
+
+Your task:
+1. Look at the image.
+2. Identify the visually distinct object categories that are clearly visible
+   in the scene but are NOT the main target object type "{target_class}" and
+   not obvious synonyms of it. For example, if the target is "sofa", synonyms
+   include "couch", "sectional", "loveseat", etc.
+3. Use short, lowercase, singular English nouns like:
+   "pillow", "blanket", "rug", "wall", "lamp", "coffee table", "plant".
+4. Do not include generic words like "object", "thing", "area", "part".
+5. Do not include the main target object or its synonyms.
+6. Focus on meaningful, visually noticeable objects (do not list dozens of tiny details).
+
+Return your answer as a SINGLE comma-separated list with NO extra text.
+Example:
+pillow, blanket, rug, wall, lamp
+"""
+
+    response = client.models.generate_content(
+        model="gemini-2.5-flash-image-preview",
+        contents=[prompt, image],
+        config=GenerateContentConfig(
+            response_modalities=["TEXT"],
+            candidate_count=1,
+        ),
+    )
+
+    text = ""
+    for part in response.candidates[0].content.parts:
+        if part.text:
+            text += part.text
+
+    # Parse comma-separated list
+    raw_items = [t.strip().lower() for t in text.split(",")]
+    items: List[str] = []
+    seen = set()
+    target_lower = target_class.lower()
+
+    for item in raw_items:
+        if not item:
+            continue
+        if item in seen:
+            continue
+        # crude filter: don't include items that mention the target string
+        if target_lower in item:
+            continue
+        seen.add(item)
+        items.append(item)
+
+    return items
 
 
 def format_object_list(other_objects):
@@ -60,26 +134,30 @@ def format_object_list(other_objects):
         return f"{all_but_last}, or {last_item}"
 
 
-# -------------------------------------------------------------------
-# Prompt builder
-# -------------------------------------------------------------------
-def build_inpaint_prompt(target_class: str, classes_in_crop: List[str]) -> str:
+def build_inpaint_prompt_with_gpt(
+    target_class: str,
+    image_path: str = "best_image.png",
+) -> tuple[str, List[str]]:
     """
-    Builds a structured inpainting prompt like:
+    Builds the inpainting prompt using Gemini's understanding of `image_path`
+    to figure out which objects should NOT be included (non-alias objects).
 
-    "can you fill the mask with the same texture and fabric as the rest of the <target_object>
-     with only the <target_object> and no white gaps or holes in the <target_object>.
-     You must not include the following objects in the image <other_object#1>, ..., <other_object#n>."
+    Returns:
+      (prompt_string, non_alias_objects_list)
     """
-    other_objects = sorted({
-        c for c in classes_in_crop
-        if c.lower() != target_class.lower()
-    })
+
+    image_path = next(Path("best_image_post_processing/crops").glob("*"), None)
+
+    # Ask Gemini which non-alias objects are present in the image
+    other_objects = get_non_alias_objects_from_image(
+        image_path=image_path,
+        target_class=target_class,
+    )
 
     if other_objects:
         others_str = format_object_list(other_objects=other_objects)
         prompt = (
-            f"can you fill the mask with the same texture and fabric as the rest of the {target_class} "
+            f"Can you fill the mask with the same texture and fabric as the rest of the {target_class} "
             f"with only the {target_class} and no white gaps or holes in the {target_class}. "
             f"Also make sure to not include {others_str}."
         )
@@ -90,7 +168,10 @@ def build_inpaint_prompt(target_class: str, classes_in_crop: List[str]) -> str:
             f"There are no other objects that should be included."
         )
 
-    return prompt
+    print("NANO_BANANA PROMPT: ", prompt)
+
+    return prompt, other_objects
+
 
 
 # -------------------------------------------------------------------
@@ -188,7 +269,7 @@ def recontext_masked_area(
     if not GOOGLE_API_KEY:
         raise RuntimeError("GOOGLE_API_KEY is not set. Please export it in your environment.")
 
-    UPLOADS_DIR = "uploads"
+    UPLOADS_DIR = "best_image_post_processing/uploads"
     os.makedirs(UPLOADS_DIR, exist_ok=True)
 
     # Create a single global client
@@ -267,16 +348,6 @@ def run_full_inpaint_with_manual_mask(
     use_gpt: bool = True,
     adjustment_factor: int = -15,
 ) -> dict:
-    """
-    Full end-to-end:
-      1) Run MaskGenerationRunner on the original image to get:
-         - target_class
-         - classes_in_crop
-      2) Build the structured prompt from those classes.
-      3) Combine the *original image* and a *user-provided mask*.
-      4) Call Gemini to inpaint.
-      5) Return paths + prompt.
-    """
     # 1) Run your existing pipeline just to get target + other objects
     runner = MaskGenerationRunner()
     summary = runner.run(
@@ -295,10 +366,16 @@ def run_full_inpaint_with_manual_mask(
         raise RuntimeError("MaskGenerationRunner did not return a target_class.")
 
     print(f"[summary] target_class: {target_class}")
-    print(f"[summary] classes_in_crop: {classes_in_crop}")
+    print(f"[summary] classes_in_crop (from YOLO/json, not used for negation): {classes_in_crop}")
 
-    # 2) Build prompt
-    prompt = build_inpaint_prompt(target_class, classes_in_crop)
+    # 2) Build prompt using Gemini vision on best_image.png,
+    #    instead of looking into the JSON / classes_in_crop.
+    BEST_IMAGE_PATH = "best_image.png"  # adjust if it's somewhere else
+    prompt, gpt_non_alias_objects = build_inpaint_prompt_with_gpt(
+        target_class=target_class,
+        image_path=BEST_IMAGE_PATH,
+    )
+    print("[summary] GPT non-alias objects:", gpt_non_alias_objects)
     print("[summary] inpaint prompt:", prompt)
 
     # 3–4) Combine + inpaint using your manual mask
@@ -317,6 +394,7 @@ def run_full_inpaint_with_manual_mask(
     return {
         "target_class": target_class,
         "classes_in_crop": classes_in_crop,
+        "gpt_non_alias_objects": gpt_non_alias_objects,
         "prompt": prompt,
         "combined_image_path": combined_path,
         "inpainted_image_path": inpainted_path,

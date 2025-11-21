@@ -13,7 +13,7 @@ from google.genai.types import GenerateContentConfig
 # -------------------------------------------------------------------
 load_dotenv()  # expects GEMINI_API_KEY in your .env or environment
 
-UPLOADS_DIR = "uploads"
+UPLOADS_DIR = "best_image_post_processing/uploads"
 os.makedirs(UPLOADS_DIR, exist_ok=True)
 
 

@@ -10,13 +10,10 @@ from typing import List, Dict, Optional, Tuple, Any
 import cv2
 from openai import OpenAI
 
-# Bbox-only YOLO (e.g. Objects365 detector)
-import best_image_post_processing.object_detection as od
-
-# Segmentation YOLO (yolo11n-seg)
+# Segmentation YOLO (yolo11n-seg) – we will use this for everything
 import best_image_post_processing.object_detection_segmented as ods
 
-import best_image_post_processing.extract_url_info as eui 
+import best_image_post_processing.extract_url_info as eui
 
 from dotenv import load_dotenv
 
@@ -36,15 +33,16 @@ def strip_code_fences(s: str) -> str:
     s = re.sub(r'\n\s*```\s*$', '', s, count=1)
     return s
 
+
 class ProductCropper:
     """
     End-to-end:
-      URL -> product aliases -> choose YOLO class -> crop all detections of that class.
+      URL -> product aliases -> choose YOLO class (from segmentation output) -> crop all detections of that class.
 
-    Also provides a method to merge:
-      - bbox-only JSON (e.g. Objects365 detector; object_detection.py)
-      - seg JSON (e.g. YOLO11 segmentation model; object_detection_segmented.py)
-    into a per-alias JSON containing bounding_box + mask_polygon.
+    This version is segmentation-only:
+      - Uses `object_detection_segmented` (yolo11n-seg) to detect objects.
+      - Uses the class names present in the segmentation JSON as the candidate classes.
+      - Crops using the bounding_box fields provided by the segmentation model.
     """
 
     def __init__(self, gpt_model: str = "gpt-5"):
@@ -56,10 +54,11 @@ class ProductCropper:
         self,
         image_path: str,
         product_url: str,
-        out_dir: str = "crops",
+        out_dir: str = "best_image_post_processing/crops",
         conf: float = 0.25,
         iou: float = 0.45,
         use_gpt: bool = True,
+        save_crops: bool = True,   # <--- NEW
     ) -> Dict:
         """
         Returns a summary dict containing:
@@ -68,36 +67,54 @@ class ProductCropper:
             "target_class": str,
             "num_crops_saved": int,
             "saved_files": [paths...],
-            "detections": <raw detections dict from od.get_objects_json>,
+            "detections": <raw detections dict from ods.get_objects_json>,
             "out_dir": str,
           }
+
+        All detections are from the segmentation model (yolo11n-seg).
         """
         # 1) Get product profile from your URL extractor
         profile = self._get_product_profile(product_url)
 
-        # 2) Detections (bbox-only YOLO)
-        det = od.get_objects_json(image_path, conf=conf, iou=iou)
+        # 2) Detections (segmentation YOLO)
+        det = ods.get_objects_json(image_path, conf=conf, iou=iou)
 
-        # 3) Choose target class from bbox model's class space
-        class_names = list(od.load_model().names.values())
+        # 3) Candidate class names from segmentation JSON
+        class_names = sorted({
+            (obj.get("object_name") or "").strip()
+            for obj in det.get("objects", [])
+            if (obj.get("object_name") or "").strip()
+        })
+
+        if not class_names:
+            raise RuntimeError(
+                "Segmentation model returned no objects with object_name; "
+                "cannot choose a target class."
+            )
+
+        # Choose target class via GPT or fuzzy-only, among classes present in this image
         target_class = (
             self._map_product_to_yolo_class_gpt(profile, class_names)
             if use_gpt else
             self._map_product_to_yolo_class_fuzzy(profile, class_names)
         )
 
-        # 4) Crop all detections of that class
-        saved_files = self._crop_target_objects(image_path, det, target_class, out_dir)
+        # 4) Crop all detections of that class (from segmentation detections)
+        if save_crops:
+            saved_files = self._crop_target_objects(image_path, det, target_class, out_dir)
+        else:
+            saved_files = []
 
         return {
             "profile": profile,
             "target_class": target_class,
             "num_crops_saved": len(saved_files),
             "saved_files": saved_files,
-            "detections": det,
+            "detections": det,   # segmentation detections
             "out_dir": out_dir,
         }
-
+    
+    
     # ---------- step 1: product profile ----------
     def _get_product_profile(self, url: str) -> Dict:
         """
@@ -133,7 +150,7 @@ class ProductCropper:
             'Return ONLY JSON: {"best_match_class": string}, where the value is EXACTLY one of the class names.\n'
             f"Company: {company}\n"
             f"Product aliases: {aliases}\n\n"
-            "Candidate class names:\n"
+            "Candidate class names (from the segmentation model detections in this image):\n"
             f"{class_list_str}\n\n"
             "Rules:\n"
             "- Choose a single best class used by typical object-detection datasets.\n"
@@ -190,7 +207,7 @@ class ProductCropper:
                     best_name, best_score = cands[0], score
         return best_name
 
-    # ---------- step 4: crop ----------
+    # ---------- step 4: crop (using segmentation detections) ----------
     def _crop_target_objects(
         self,
         image_path: str,
@@ -200,11 +217,12 @@ class ProductCropper:
     ) -> List[str]:
         """
         Crops each detection whose object_name == target_class (case-insensitive).
+        Uses bounding_box coordinates from the segmentation JSON.
         Saves JPEGs; returns list of file paths.
         """
         os.makedirs(out_dir, exist_ok=True)
 
-        img_bgr = cv2.imread(image_path)  # OpenCV BGR
+        img_bgr = cv2.imread(str(image_path))  # OpenCV BGR
         if img_bgr is None:
             raise FileNotFoundError(image_path)
         H, W = img_bgr.shape[:2]
@@ -225,6 +243,7 @@ class ProductCropper:
             h = max(1, min(h, H - y))
             crop = img_bgr[y:y+h, x:x+w].copy()
             out_path = os.path.join(out_dir, f"{stem}_{tcl}_{i:03d}.jpg")
+            print("******************************OUTPUT PATH: ", out_path)
             cv2.imwrite(out_path, crop)
             saved.append(out_path)
         return saved
@@ -235,23 +254,27 @@ class ProductCropper:
 def run_product_cropping_pipeline(
     image_path: str,
     product_url: str,
-    out_dir: str = "crops",
+    out_dir: str = "best_image_post_processing/crops",
     conf: float = 0.25,
     iou: float = 0.45,
     use_gpt: bool = True,
+    save_crops: bool = True,   # <--- NEW
 ) -> Dict[str, Any]:
     """
     High-level pipeline you can call from other code.
 
     It:
-      1) Runs ProductCropper.run (to decide target_class and make crops)
-      2) Ensures seg JSON + annotated seg image exist
+      1) Runs ProductCropper.run (segmentation-only) to:
+         - decide target_class
+         - (optionally) make crops of the target_class
+         - get segmentation detections
+      2) Saves seg JSON + annotated seg image
       3) Filters seg JSON so it ONLY contains objects whose object_name == target_class
       4) Returns summary + filtered seg_json path + annotated image path
     """
     pc = ProductCropper(gpt_model="gpt-5")
 
-    # 1) main pipeline
+    # 1) main pipeline (segmentation-only)
     summary = pc.run(
         image_path=image_path,
         product_url=product_url,
@@ -259,6 +282,7 @@ def run_product_cropping_pipeline(
         conf=conf,
         iou=iou,
         use_gpt=use_gpt,
+        save_crops=save_crops,   # <--- pass through
     )
 
     print(json.dumps({
@@ -273,26 +297,22 @@ def run_product_cropping_pipeline(
     alias = summary["target_class"]
     alias_lower = alias.lower()
 
-    # 2) segmentation JSON + annotated mask image
+    # Segmentation detections from ProductCropper (already computed)
+    seg_res = summary["detections"]
+
+    # 2) Write segmentation JSON + annotated mask image
     stem = Path(image_path).stem
-    seg_json = f"{stem}_yolo11_o365_seg.json"
-    seg_img  = f"{stem}_yolo11_o365_seg.jpg"
+    seg_json = f"best_image_post_processing/{stem}_yolo11_o365_seg.json"
+    seg_img  = f"best_image_post_processing/{stem}_yolo11_o365_seg.jpg"
 
-    if Path(seg_json).exists():
-        # Load existing segmentation results
-        with open(seg_json, "r") as f:
-            seg_res = json.load(f)
-        seg_out_img = seg_img  # assume already created earlier
-        print(f"[seg] Loaded existing JSON → {seg_json}")
-    else:
-        # Run segmentation model and save results
-        seg_res = ods.get_objects_json(image_path, conf=conf, iou=iou)
-        with open(seg_json, "w") as f:
-            json.dump(seg_res, f, indent=2)
-        print(f"[seg] Saved JSON → {seg_json}")
+    # Save full segmentation results to JSON
+    with open(seg_json, "w") as f:
+        json.dump(seg_res, f, indent=2)
+    print(f"[seg] Saved JSON → {seg_json}")
 
-        seg_out_img = ods.draw_boxes_and_masks_pil(image_path, seg_res, seg_img)
-        print(f"[seg] Saved annotated image → {seg_out_img}")
+    # Draw boxes + masks from seg_res
+    seg_out_img = ods.draw_boxes_and_masks_pil(image_path, seg_res, seg_img)
+    print(f"[seg] Saved annotated image → {seg_out_img}")
 
     # 3) Filter seg_res to ONLY include objects of the alias/target class
     filtered_objects = [
@@ -318,7 +338,6 @@ def run_product_cropping_pipeline(
         "seg_annotated_image": seg_out_img,
         "filtered_objects": filtered_objects,
     }
-
 
 
 # ---------- example usage via __main__ ----------
